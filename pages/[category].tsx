@@ -47,7 +47,7 @@ const Category: FC<CategoryProps> = ({ data, category, page }) => {
       </FlexBox>
       <Box mt='10px'>
         <Grid container spacing={"10px"}>
-          {data?.results?.map((item) => (
+          {data?.results?.map((item: any) => (
             <Grid item lg={4} key={item.id} md={6} xs={12}>
               <HomeCard
                 id={item.id}
@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   params,
   query,
 }) => {
-  const category = params.category as string;
+  const category = params && params.category;
   const page = Number(query.page) || 1;
   let data = [];
   switch (category) {
