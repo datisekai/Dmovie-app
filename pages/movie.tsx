@@ -1,13 +1,14 @@
-import { Box } from "@mui/material";
-import type { GetStaticProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import movie from "../src/components/actions/movie";
-import tv from "../src/components/actions/tv";
 import Movie from "../src/components/Home/Movie";
-import Trend from "../src/components/Home/Trend";
-import TV from "../src/components/Home/TV";
 import HomeLayout from "../src/components/layout/HomeLayout";
-const Home: NextPage = ({ data }: any) => {
+const MoviePage: NextPage = ({ data }: any) => {
   const movieRender = [
+    {
+      url: "/movie-trend",
+      title: "Movie Trending",
+      results: data.trend,
+    },
     {
       url: "/rated",
       title: "Movie Rated",
@@ -23,40 +24,16 @@ const Home: NextPage = ({ data }: any) => {
       title: "Movie Popular",
       results: data.popular,
     },
-  ];
-
-  const TVRender = [
     {
-      url: "/airing-today",
-      title: "TV AiringToday",
-      results: data.airing,
-    },
-    {
-      url: "/on-the-air",
-      title: "TV OnTheAir",
-      results: data.onTheAir,
-    },
-    {
-      url: "/tv-popular",
-      title: "TV Popular",
-      results: data.tvPopular,
+      url: "/now-playing",
+      title: "Movie NowPlaying",
+      results: data.nowPlaying,
     },
   ];
-
   return (
     <HomeLayout>
-      <Trend data={data.trend} />
-
       {movieRender?.map((item) => (
         <Movie
-          data={item.results}
-          url={item.url}
-          title={item.title}
-          key={item.url}
-        />
-      ))}
-      {TVRender?.map((item) => (
-        <TV
           data={item.results}
           url={item.url}
           title={item.title}
@@ -67,17 +44,14 @@ const Home: NextPage = ({ data }: any) => {
   );
 };
 
-export default Home;
+export default MoviePage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const dataTrend = await movie.getTrending();
+  const dataTrend = await movie.getMovieTrending();
   const dataRated = await movie.getRated();
   const dataPopular = await movie.getPopular();
   const dataUpComing = await movie.getUpComing();
-
-  const tvAiring = await tv.getAiringToday();
-  const tvOta = await tv.getOntheAir();
-  const tvPopular = await tv.getPopular();
+  const dataNowPlaying = await movie.getNowPlaying();
 
   return {
     props: {
@@ -86,9 +60,7 @@ export const getStaticProps: GetStaticProps = async () => {
         rated: dataRated.results.slice(0, 6),
         upComing: dataUpComing.results.slice(0, 6),
         popular: dataPopular.results.slice(0, 6),
-        airing: tvAiring.results.slice(0, 6),
-        onTheAir: tvOta.results.slice(0, 6),
-        tvPopular: tvPopular.results.slice(0, 6),
+        nowPlaying: dataNowPlaying.results.slice(0, 6),
       },
     },
     revalidate: 60,

@@ -13,9 +13,12 @@
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.4",
+    "axios": "^0.27.2",
     "next": "12.1.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-material-ui-carousel": "^3.4.2",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/node": "18.0.0",
