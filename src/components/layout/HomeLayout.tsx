@@ -10,11 +10,6 @@ import WidthLayout from "./WidthLayout";
 const HomeLayout: FC<Props> = ({ children }) => {
   return (
     <MainLayout>
-      <Meta
-        image={`https://image.tmdb.org/t/p/w500/wcKFYIiVDvRURrzglV9kGu7fpfY.jpg`}
-        title={"Dmovie | Watch movie"}
-        description={"This is a web watch movie"}
-      />
       <WidthLayout>
         <FlexBox>
           <SideBar />

@@ -15,7 +15,7 @@ import MovieDetailProps from "../../src/models/MovieDetailProps";
 
 const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
   return (
-    <IsBrowser>
+    <>
       <Meta
         image={`${IMAGE_500}${detail.backdrop_path}`}
         title={
@@ -26,28 +26,30 @@ const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
         }
         description={detail.overview}
       />
-      <MainLayout>
-        <WidthLayout>
-          <Box
-            p='20px'
-            sx={{
-              display: "flex",
-              flexDirection: {
-                md: "row",
-                xs: "column",
-              },
-            }}
-          >
-            <Box sx={{ flex: 1 }}>
-              <VideoCard keyVideo={video.key} />
-              <DetailVideo data={detail} />
-              <Reviews data={reviews} />
+      <IsBrowser>
+        <MainLayout>
+          <WidthLayout>
+            <Box
+              p='20px'
+              sx={{
+                display: "flex",
+                flexDirection: {
+                  md: "row",
+                  xs: "column",
+                },
+              }}
+            >
+              <Box sx={{ flex: 1 }}>
+                <VideoCard keyVideo={video.key} />
+                <DetailVideo data={detail} />
+                <Reviews data={reviews} />
+              </Box>
+              <Similars data={similars} />
             </Box>
-            <Similars data={similars} />
-          </Box>
-        </WidthLayout>
-      </MainLayout>
-    </IsBrowser>
+          </WidthLayout>
+        </MainLayout>
+      </IsBrowser>
+    </>
   );
 };
 

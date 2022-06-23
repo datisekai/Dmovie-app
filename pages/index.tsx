@@ -45,26 +45,33 @@ const Home: NextPage = ({ data }: any) => {
   ];
 
   return (
-    <HomeLayout>
-      <Trend data={data.trend} />
+    <>
+      <Meta
+        image={`https://image.tmdb.org/t/p/w500/wcKFYIiVDvRURrzglV9kGu7fpfY.jpg`}
+        title={"Dmovie | Watch movie"}
+        description={"This is a web watch movie"}
+      />
+      <HomeLayout>
+        <Trend data={data.trend} />
 
-      {movieRender?.map((item) => (
-        <Movie
-          data={item.results}
-          url={item.url}
-          title={item.title}
-          key={item.url}
-        />
-      ))}
-      {TVRender?.map((item) => (
-        <TV
-          data={item.results}
-          url={item.url}
-          title={item.title}
-          key={item.url}
-        />
-      ))}
-    </HomeLayout>
+        {movieRender?.map((item) => (
+          <Movie
+            data={item.results}
+            url={item.url}
+            title={item.title}
+            key={item.url}
+          />
+        ))}
+        {TVRender?.map((item) => (
+          <TV
+            data={item.results}
+            url={item.url}
+            title={item.title}
+            key={item.url}
+          />
+        ))}
+      </HomeLayout>
+    </>
   );
 };
 
