@@ -9,7 +9,7 @@ interface SimilarsProps {
 const Similars: FC<SimilarsProps> = ({ data }) => {
   return (
     <Box
-      px='20px'
+      px={{ md: "20px", xs: "0" }}
       pb={"10px"}
       pt='0px'
       sx={{
