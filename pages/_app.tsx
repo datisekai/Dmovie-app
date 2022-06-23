@@ -1,11 +1,10 @@
 import type { AppProps } from "next/app";
-import { Router } from "next/router";
-import "../styles/globals.css";
+import NextNProgress from "nextjs-progressbar";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import NextNProgress from "nextjs-progressbar";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

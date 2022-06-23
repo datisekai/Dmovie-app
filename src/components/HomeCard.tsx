@@ -11,7 +11,9 @@ const HomeCard: FC<TrendCard> = ({ image, title, id, vote, media_type }) => {
   return (
     <Box sx={{ position: "relative" }}>
       <img
-        onClick={() => router.push(`/${media_type}/${id}`)}
+        onClick={() =>
+          router.push(`/${media_type === "movie" ? "movie" : "tv-show"}/${id}`)
+        }
         src={`${IMAGE_500}${image}`}
         id='homeCard'
         alt=''

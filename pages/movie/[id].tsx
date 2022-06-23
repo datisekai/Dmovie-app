@@ -60,6 +60,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const dataSimilar = await movie.getSimilarMovie(movieId);
   const dataReview = await movie.getReviews(movieId);
 
+  if (!dataDetail) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       video: dataVideo.results[0],
