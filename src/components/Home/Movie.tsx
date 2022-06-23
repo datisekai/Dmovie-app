@@ -15,6 +15,7 @@ const Movie: FC<MovieProps> = ({ data, url, title }) => {
                 image={item.poster_path || item.backdrop_path}
                 id={item.id.toString()}
                 title={item.title || item.original_title}
+                media_type='movie'
               />
             </Grid>
           ))}

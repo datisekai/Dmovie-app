@@ -4,10 +4,10 @@ import React, { FC } from "react";
 import { IMAGE_300 } from "../../config";
 import OtherCard from "../../models/OtherCard";
 
-const OtherCard: FC<OtherCard> = ({ image, title, id }) => {
+const OtherCard: FC<OtherCard> = ({ image, title, id, media_type }) => {
   return (
     <Box>
-      <Link href={`/video/${id}`}>
+      <Link href={`/${media_type}/${id}`}>
         <a>
           <img src={`${IMAGE_300}${image}`} id='otherCard' alt='' />
         </a>

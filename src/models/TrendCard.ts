@@ -3,4 +3,5 @@ export default interface TrendCard{
     title:string,
     id:string,
     vote:string
+    media_type:string
 }

@@ -8,7 +8,7 @@ const MainLayout: FC<Props> = ({ children }) => {
   return (
     <Box>
       <Header />
-      <Box>{children}</Box>
+      <Box mt='67px'>{children}</Box>
       <OnTop />
     </Box>
   );

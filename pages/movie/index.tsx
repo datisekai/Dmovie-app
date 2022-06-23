@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from "next";
-import movie from "../src/components/actions/movie";
-import Movie from "../src/components/Home/Movie";
-import HomeLayout from "../src/components/layout/HomeLayout";
+import movie from "../../src/actions/movie";
+import Movie from "../../src/components/Home/Movie";
+import HomeLayout from "../../src/components/layout/HomeLayout";
 const MoviePage: NextPage = ({ data }: any) => {
   const movieRender = [
     {

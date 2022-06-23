@@ -1,8 +1,8 @@
 import { GetStaticProps, NextPage } from "next";
 import React from "react";
-import tv from "../src/components/actions/tv";
-import TV from "../src/components/Home/TV";
-import HomeLayout from "../src/components/layout/HomeLayout";
+import tv from "../../src/actions/tv";
+import TV from "../../src/components/Home/TV";
+import HomeLayout from "../../src/components/layout/HomeLayout";
 
 const TvShow: NextPage = ({ data }: any) => {
   const TVRender = [

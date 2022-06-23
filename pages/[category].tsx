@@ -3,8 +3,8 @@ import { Box } from "@mui/system";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import movie from "../src/components/actions/movie";
-import tv from "../src/components/actions/tv";
+import movie from "../src/actions/movie";
+import tv from "../src/actions/tv";
 import Breadcrumb from "../src/components/Breadcrumbs";
 import categoryData from "../src/components/data/category";
 import FlexBox from "../src/components/FlexBox";
@@ -56,7 +56,8 @@ const Category: FC<CategoryProps> = ({ data, category, page }) => {
                   item.title ||
                   item.original_title ||
                   item.name ||
-                  item.original_name
+                  item.original_name ||
+                  "Not found title"
                 }
                 vote={item.vote_average}
               />

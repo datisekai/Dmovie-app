@@ -4,10 +4,24 @@ import { primary } from "../theme/theme";
 import BackupIcon from "@mui/icons-material/Backup";
 import { TextFields } from "@mui/icons-material";
 import WidthLayout from "./layout/WidthLayout";
+import useScrollProgress from "../hooks/useScrollProgress";
+import Link from "next/link";
 
 const Header = () => {
+  const width = useScrollProgress();
+
   return (
-    <Box id='shadowBottom'>
+    <Box
+      id='shadowBottom'
+      sx={{
+        position: "fixed",
+        top: 0,
+        right: 0,
+        left: 0,
+        zIndex: 9999,
+        bgcolor: "white",
+      }}
+    >
       <WidthLayout>
         <Box
           sx={{
@@ -18,9 +32,13 @@ const Header = () => {
             justifyContent: "space-between",
           }}
         >
-          <Typography color={primary.main} fontSize='25px'>
-            DMovie
-          </Typography>
+          <Link href={"/"}>
+            <a>
+              <Typography color={primary.main} fontSize='25px'>
+                DMovie
+              </Typography>
+            </a>
+          </Link>
           <TextField
             size='small'
             id='outlined-basic'
@@ -43,6 +61,11 @@ const Header = () => {
           </Box>
         </Box>
       </WidthLayout>
+      {width > 0 && (
+        <Box className='progress-container'>
+          <Box className='progress-bar' style={{ width: `${width}%` }}></Box>
+        </Box>
+      )}
     </Box>
   );
 };

@@ -32,14 +32,42 @@ a {
   border-radius: 10px;
   width: 100% ;
   aspect-ratio: 360/200;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25)
 }
 
 #otherCard{
   border-radius: 10px;
   width: 100%;
   aspect-ratio: 160/213;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25)
 }
 
 img{
   cursor: pointer;
+}
+
+.progress-container {
+  width: 100%;
+  height: 3px;
+  background: #ccc;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 3px;
+  background-image: linear-gradient(to right, #0099f7, #f11712);
+  width: 0%;
+}
+
+#videoCard{
+  aspect-ratio: 16/9;
+  width: 100%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25)
+}
+
+#similarCard{
+  width: 160px;
+  border-radius: 10px;
+  aspect-ratio: 160/90;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25)
 }

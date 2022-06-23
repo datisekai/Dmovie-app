@@ -1,5 +1,5 @@
-import { API_KEY } from "../../config";
-import axiosClient from "../../config/axiosClient";
+import { API_KEY } from "../config";
+import axiosClient from "../config/axiosClient";
 const tv = {
     getAiringToday:async (page = 1) => {
         const dataAtd = await axiosClient.get(`/tv/airing_today?api_key=${API_KEY}&page=${page}`);

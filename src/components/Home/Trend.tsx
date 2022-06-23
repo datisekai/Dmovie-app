@@ -17,6 +17,7 @@ const Trend: FC<PropsData> = ({ data }) => {
                 title={item.title || item.original_title}
                 image={item.backdrop_path || item.poster_path}
                 vote={item.vote_average.toString()}
+                media_type={item.media_type}
               />
             </Grid>
           ))}

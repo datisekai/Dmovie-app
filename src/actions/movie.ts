@@ -1,5 +1,5 @@
-import { API_KEY } from "../../config";
-import axiosClient from "../../config/axiosClient";
+import { API_KEY } from "../config";
+import axiosClient from "../config/axiosClient";
 
 const movie = {
     getTrending:async(page = 1) => {
@@ -36,6 +36,22 @@ const movie = {
     getNowPlaying:async(page = 1) => {
         const dataNowPlay = await axiosClient.get(`/movie/now_playing?api_key=${API_KEY}&page=${page}`) 
         return dataNowPlay.data;
+    },
+    getMovieById:async(id:string) => {
+        const data = await axiosClient.get(`/movie/${id}?api_key=${API_KEY}`)
+        return data.data;
+    },
+    getSimilarMovie:async(id:string) => {
+        const data = await axiosClient.get(`/movie/${id}/similar?api_key=${API_KEY}&page=1`);
+        return data.data;
+    },
+    getTrallerById:async(id:string) => {
+        const data = await axiosClient.get(`/movie/${id}/videos?api_key=${API_KEY}`)
+        return data.data;
+    },
+    getReviews:async(id:string) => {
+        const data = await axiosClient.get(`/movie/${id}/reviews?api_key=${API_KEY}`);
+        return data.data;
     }
 }
 

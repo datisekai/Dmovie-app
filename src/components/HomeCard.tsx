@@ -6,12 +6,12 @@ import TrendCard from "../models/TrendCard";
 import { primary } from "../theme/theme";
 import FlexBox from "./FlexBox";
 
-const HomeCard: FC<TrendCard> = ({ image, title, id, vote }) => {
+const HomeCard: FC<TrendCard> = ({ image, title, id, vote, media_type }) => {
   const router = useRouter();
   return (
     <Box sx={{ position: "relative" }}>
       <img
-        onClick={() => router.push(`/video/${id}`)}
+        onClick={() => router.push(`/${media_type}/${id}`)}
         src={`${IMAGE_500}${image}`}
         id='homeCard'
         alt=''
