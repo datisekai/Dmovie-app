@@ -10,13 +10,14 @@ import { IsBrowser } from "../../src/components/IsBrowser";
 import MainLayout from "../../src/components/layout/MainLayout";
 import WidthLayout from "../../src/components/layout/WidthLayout";
 import Meta from "../../src/components/Meta";
+import { IMAGE_500 } from "../../src/config";
 import MovieDetailProps from "../../src/models/MovieDetailProps";
 
 const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
   return (
     <IsBrowser>
       <Meta
-        image={detail.backdrop_path}
+        image={`${IMAGE_500}${detail.backdrop_path}`}
         title={
           detail.title ||
           detail.original_title ||
