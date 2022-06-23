@@ -50,6 +50,7 @@ const Category: FC<CategoryProps> = ({ data, category, page }) => {
           {data?.results?.map((item: any) => (
             <Grid item lg={4} key={item.id} md={6} xs={12}>
               <HomeCard
+                media_type={item.media_type || "movie"}
                 id={item.id}
                 image={item.backdrop_path || item.poster_path}
                 title={
