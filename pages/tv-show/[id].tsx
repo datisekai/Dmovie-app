@@ -11,7 +11,7 @@ const Video = () => {
       <WidthLayout>
         <Box p='20px' sx={{ display: "flex" }}>
           <Box sx={{ flex: 1 }}>
-            <VideoCard />
+            <VideoCard keyVideo='abc' />
           </Box>
         </Box>
       </WidthLayout>
