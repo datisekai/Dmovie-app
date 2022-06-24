@@ -43,7 +43,7 @@ const TVShow: FC<TvShowProps> = ({ episodeSeasons, detail, similars }) => {
   }
 
   const renderMeta = () => {
-    if (season && episode && detailEpisode) {
+    if (detailEpisode) {
       return (
         <Meta
           image={`${IMAGE_500}${detailEpisode.still_path}`}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { FC } from "react";
 import { IMAGE_300 } from "../../config";
 import OtherCard from "../../models/OtherCard";
+import limitName from "../../utils/limitName";
 
 const OtherCard: FC<OtherCard> = ({ image, title, id, media_type }) => {
   return (
@@ -12,7 +13,7 @@ const OtherCard: FC<OtherCard> = ({ image, title, id, media_type }) => {
           <img src={`${IMAGE_300}${image}`} id='otherCard' alt='' />
         </a>
       </Link>
-      <Typography>{title}</Typography>
+      <Typography>{limitName(title)}</Typography>
     </Box>
   );
 };
