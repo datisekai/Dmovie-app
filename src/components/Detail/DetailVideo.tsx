@@ -30,39 +30,45 @@ const DetailVideo: FC<DetailVideoProps> = ({ data }) => {
           />
         </Box>
       )}
-      <Typography mt='10px'>Release date: {data.release_date}</Typography>
+      <Typography mt='10px'>
+        Release date: {data.release_date || data.first_air_date}
+      </Typography>
       <FlexBox mt='10px' alignItems={"center"}>
         <Typography>Languages</Typography>
-        {data.spoken_languages.map((item: any) => (
-          <Typography
-            sx={{
-              px: "10px",
-              bgcolor: primary.main,
-              color: "white",
-              ml: "10px",
-              borderRadius: "10px",
-            }}
-            key={item.iso_639_1}
-          >
-            {item.english_name}
-          </Typography>
-        ))}
+        <FlexBox alignItems={"center"} flexWrap='wrap'>
+          {data.spoken_languages.map((item: any) => (
+            <Typography
+              sx={{
+                px: "10px",
+                bgcolor: primary.main,
+                color: "white",
+                ml: "10px",
+                borderRadius: "10px",
+              }}
+              key={item.iso_639_1}
+            >
+              {item.english_name}
+            </Typography>
+          ))}
+        </FlexBox>
       </FlexBox>
 
       <FlexBox mt='10px' alignItems={"center"}>
         <Typography>Genres</Typography>
-        {data.genres.map((item: any) => (
-          <Typography
-            sx={{
-              ml: "10px",
-              px: "10px",
-              color: primary.main,
-            }}
-            key={item.id}
-          >
-            {item.name}
-          </Typography>
-        ))}
+        <FlexBox alignItems={"center"} flexWrap='wrap'>
+          {data.genres.map((item: any) => (
+            <Typography
+              sx={{
+                ml: "10px",
+                px: "10px",
+                color: primary.main,
+              }}
+              key={item.id}
+            >
+              {item.name}
+            </Typography>
+          ))}
+        </FlexBox>
       </FlexBox>
       <Typography component={"p"} mt='10px'>
         {data.overview}

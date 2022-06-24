@@ -4,14 +4,19 @@ import SimilarCard from "./SimilarCard";
 
 interface SimilarsProps {
   data: any[];
+  media_type: string;
 }
 
-const Similars: FC<SimilarsProps> = ({ data }) => {
+const Similars: FC<SimilarsProps> = ({ data, media_type }) => {
   return (
     <Box
       px={{ md: "20px", xs: "0" }}
       pb={"10px"}
       pt='0px'
+      mt={{
+        md: "0px",
+        xs: "20px",
+      }}
       sx={{
         width: {
           md: "25%",
@@ -29,6 +34,7 @@ const Similars: FC<SimilarsProps> = ({ data }) => {
       </Typography>
       {data?.map((item: any) => (
         <SimilarCard
+          media_type={media_type}
           key={item.id}
           id={item.id}
           image={item.backdrop_path || item.poster_path}

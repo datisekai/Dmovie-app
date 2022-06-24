@@ -1,19 +1,27 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { GetStaticPaths, GetStaticProps } from "next";
-import React, { FC } from "react";
+import { useRouter } from "next/router";
+import React, { FC, useEffect, useState } from "react";
 import movie from "../../src/actions/movie";
 import DetailVideo from "../../src/components/Detail/DetailVideo";
 import Reviews from "../../src/components/Detail/Reviews";
 import Similars from "../../src/components/Detail/Similars";
+import Trallers from "../../src/components/Detail/Trallers";
 import VideoCard from "../../src/components/Detail/VideoCard";
 import { IsBrowser } from "../../src/components/IsBrowser";
 import MainLayout from "../../src/components/layout/MainLayout";
 import WidthLayout from "../../src/components/layout/WidthLayout";
 import Meta from "../../src/components/Meta";
-import { IMAGE_500 } from "../../src/config";
+import { getMovie2Embed, IMAGE_500 } from "../../src/config";
 import MovieDetailProps from "../../src/models/MovieDetailProps";
 
 const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
+  const router = useRouter();
+
+  const handleBackMovie = () => {
+    router.push(`[id]`, `${router.query.id}`);
+  };
+
   return (
     <>
       <Meta
@@ -39,12 +47,35 @@ const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
                 },
               }}
             >
-              <Box sx={{ flex: 1 }}>
-                <VideoCard keyVideo={video.key} />
+              <Box
+                sx={{
+                  width: {
+                    md: "75%",
+                    xs: "100%",
+                  },
+                }}
+              >
+                <VideoCard
+                  keyVideo={
+                    (router?.query?.key as string) ||
+                    getMovie2Embed(router.query.id as string)
+                  }
+                />
                 <DetailVideo data={detail} />
+                {router.query.key && (
+                  <Button
+                    onClick={handleBackMovie}
+                    sx={{ mt: "10px" }}
+                    variant='outlined'
+                    size='large'
+                  >
+                    Back to Movie
+                  </Button>
+                )}
+                <Trallers data={video?.swipers} />
                 <Reviews data={reviews} />
               </Box>
-              <Similars data={similars} />
+              <Similars data={similars} media_type='movie' />
             </Box>
           </WidthLayout>
         </MainLayout>
@@ -70,7 +101,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      video: dataVideo.results[0],
+      video: {
+        default: dataVideo.results[0],
+        swipers: dataVideo.results.slice(1),
+      },
       detail: dataDetail,
       similars: dataSimilar.results,
       reviews: dataReview.results,

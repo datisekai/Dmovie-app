@@ -3,4 +3,5 @@ export default interface SimilarMovieCard {
   image: string;
   name: string;
   vote: number;
+  media_type: string;
 }

@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { IMAGE_300 } from "../../config";
 import SimilarMovieCard from "../../models/SimilarMovieCard";
@@ -7,10 +8,16 @@ import { primary } from "../../theme/theme";
 import limitName from "../../utils/limitName";
 import FlexBox from "../FlexBox";
 
-const SimilarCard: FC<SimilarMovieCard> = ({ id, image, name, vote }) => {
+const SimilarCard: FC<SimilarMovieCard> = ({
+  id,
+  image,
+  name,
+  vote,
+  media_type,
+}) => {
   return (
     <FlexBox mt='10px'>
-      <Link href={`/movie/${id}`}>
+      <Link href={`/${media_type}/${id}`}>
         <a>
           <img src={`${IMAGE_300}${image}`} id='similarCard' alt='' />
         </a>
