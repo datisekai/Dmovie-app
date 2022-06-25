@@ -7,7 +7,7 @@ interface TitleProps {
 const Title: FC<TitleProps> = ({ title }) => {
   useEffect(() => {
     document.title = title || "Dmovie | Watch movie";
-  }, []);
+  }, [title]);
   return <div></div>;
 };
 

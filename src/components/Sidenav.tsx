@@ -47,7 +47,7 @@ const Sidenav: FC<SidenavProps> = ({ display, handleHide }) => {
         {sidebar.map((item: any) => {
           const Icon = item.icon;
           return (
-            <Box sx={{ textAlign: "left", mt: "10px" }}>
+            <Box key={item.url} sx={{ textAlign: "left", mt: "10px" }}>
               <Button
                 fullWidth
                 onClick={() => router.push(`${item.url}`)}
