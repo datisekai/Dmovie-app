@@ -7,6 +7,7 @@ import Trend from "../src/components/Home/Trend";
 import TV from "../src/components/Home/TV";
 import HomeLayout from "../src/components/layout/HomeLayout";
 import Meta from "../src/components/Meta";
+import Title from "../src/components/Title";
 const Home: NextPage = ({ data }: any) => {
   const movieRender = [
     {
@@ -51,6 +52,7 @@ const Home: NextPage = ({ data }: any) => {
         title={"Dmovie | Watch movie"}
         description={"This is a web watch movie"}
       />
+      <Title />
       <HomeLayout>
         <Trend data={data.trend} />
 

@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.4",
+    "@tippyjs/react": "^4.2.6",
     "axios": "^0.27.2",
     "next": "12.1.6",
     "nextjs-progressbar": "^0.0.14",

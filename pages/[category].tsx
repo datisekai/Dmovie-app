@@ -10,6 +10,7 @@ import categoryData from "../src/components/data/category";
 import FlexBox from "../src/components/FlexBox";
 import HomeCard from "../src/components/HomeCard";
 import HomeLayout from "../src/components/layout/HomeLayout";
+import Title from "../src/components/Title";
 
 interface CategoryProps {
   data: any;
@@ -25,6 +26,7 @@ const Category: FC<CategoryProps> = ({ data, category, page }) => {
 
   return (
     <HomeLayout>
+      <Title />
       <FlexBox
         alignItems={"center"}
         justifyContent='space-between'

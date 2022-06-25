@@ -7,6 +7,7 @@ import HomeLayout from "../src/components/layout/HomeLayout";
 import GenresMovie from "../src/components/Search/GenresMovie";
 import GenresTv from "../src/components/Search/GenresTv";
 import Results from "../src/components/Search/Results";
+import Title from "../src/components/Title";
 import SearchProps from "../src/models/SearchProps";
 
 const Search: FC<SearchProps> = ({
@@ -17,6 +18,7 @@ const Search: FC<SearchProps> = ({
 }) => {
   return (
     <HomeLayout>
+      <Title title='Dmovie | Search' />
       <Box>
         <GenresMovie title='Movie' data={genresMovie} />
       </Box>

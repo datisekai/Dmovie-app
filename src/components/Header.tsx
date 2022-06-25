@@ -1,14 +1,22 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { primary } from "../theme/theme";
 import BackupIcon from "@mui/icons-material/Backup";
 import { TextFields } from "@mui/icons-material";
 import WidthLayout from "./layout/WidthLayout";
 import useScrollProgress from "../hooks/useScrollProgress";
 import Link from "next/link";
+import SearchName from "./SearchName";
+import Sidenav from "./Sidenav";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 const Header = () => {
+  const [showBar, setShowBar] = useState(false);
   const width = useScrollProgress();
+
+  const handleHideBar = () => {
+    setShowBar(false);
+  };
 
   return (
     <Box
@@ -18,10 +26,11 @@ const Header = () => {
         top: 0,
         right: 0,
         left: 0,
-        zIndex: 9999,
+        zIndex: 90,
         bgcolor: "white",
       }}
     >
+      <Sidenav display={showBar} handleHide={handleHideBar} />
       <WidthLayout>
         <Box
           sx={{
@@ -32,6 +41,14 @@ const Header = () => {
             justifyContent: "space-between",
           }}
         >
+          <div id='iconBar' onClick={() => setShowBar(true)}>
+            <MenuOpenIcon
+              sx={{
+                color: primary.main,
+              }}
+              fontSize='medium'
+            />
+          </div>
           <Link href={"/"}>
             <a>
               <Typography color={primary.main} fontSize='25px'>
@@ -39,21 +56,15 @@ const Header = () => {
               </Typography>
             </a>
           </Link>
-          <TextField
-            size='small'
-            id='outlined-basic'
-            label='Tìm kiếm'
-            fullWidth
+          <SearchName />
+          <Box
             sx={{
               display: {
-                md: "inline-block",
+                md: "block",
                 xs: "none",
               },
-              width: "500px",
             }}
-            variant='outlined'
-          />
-          <Box>
+          >
             <Button startIcon={<BackupIcon />} variant='text'>
               Tải lên
             </Button>

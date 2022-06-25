@@ -1,5 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
+import FlexBox from "../FlexBox";
 import OtherCard from "../Home/OtherCard";
 
 interface ResultsProps {
@@ -25,6 +26,7 @@ const Results: FC<ResultsProps> = ({ title, data, media_type }) => {
       <Typography fontWeight={500} fontSize='18px' mt='10px'>
         Results {title}
       </Typography>
+
       <Grid container spacing={"10px"} mt='10px'>
         {results?.map((item: any) => (
           <Grid key={item.id} item xs={6} md={3} lg={2.4}>

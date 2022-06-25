@@ -4,13 +4,13 @@ import axiosClient from "../config/axiosClient";
 const genre = {
   getGenreMovie: async () => {
     const data = await axiosClient.get(
-      `/genre/movie/list?api_key=${API_KEY}&language=en-US`
+      `/genre/movie/list?api_key=${API_KEY}&language=vi`
     );
     return data.data;
   },
   getGenreTvShow: async () => {
     const data = await axiosClient.get(
-      `/genre/tv/list?api_key=${API_KEY}&language=en-US`
+      `/genre/tv/list?api_key=${API_KEY}&language=vi`
     );
     return data.data;
   },

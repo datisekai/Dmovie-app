@@ -39,8 +39,17 @@ a {
   border-radius: 10px;
   width: 100%;
   aspect-ratio: 160/213;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25)
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
 }
+
+/* #otherCard:hover{
+  -webkit-filter: blur(3px);
+  transition: 0.8s;
+}
+
+#otherCard:hover #overlayOtherCard{
+  display: block !important;
+} */
 
 img{
   cursor: pointer;
@@ -88,3 +97,43 @@ img{
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25)
 }
 
+#searchNameBox{
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+}
+
+
+#searchNameCard{
+  width: 40px;
+  aspect-ratio: 40/52;
+  border-radius: 5px;
+}
+
+#overlay{
+  width: 100%;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.616);
+  position: fixed;
+  z-index: 99;
+}
+
+@keyframes leftToRight {
+    0%{
+      transform: translateX(-500px);
+      opacity: 0;
+    }
+   
+    100%{
+      transform: translateX(0px);
+      opacity: 1;
+    }
+}
+
+#iconBar{
+  display: none;
+}
+
+@media (max-width:768px) {
+  #iconBar{
+    display: block;
+  }
+}

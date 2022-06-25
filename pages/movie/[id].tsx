@@ -12,6 +12,7 @@ import { IsBrowser } from "../../src/components/IsBrowser";
 import MainLayout from "../../src/components/layout/MainLayout";
 import WidthLayout from "../../src/components/layout/WidthLayout";
 import Meta from "../../src/components/Meta";
+import Title from "../../src/components/Title";
 import { getMovie2Embed, IMAGE_500 } from "../../src/config";
 import MovieDetailProps from "../../src/models/MovieDetailProps";
 
@@ -33,6 +34,14 @@ const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
           detail.original_name
         }
         description={detail.overview}
+      />
+      <Title
+        title={
+          detail.title ||
+          detail.original_title ||
+          detail.name ||
+          detail.original_name
+        }
       />
       <IsBrowser>
         <MainLayout>

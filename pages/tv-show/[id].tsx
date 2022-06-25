@@ -12,6 +12,7 @@ import { IsBrowser } from "../../src/components/IsBrowser";
 import MainLayout from "../../src/components/layout/MainLayout";
 import WidthLayout from "../../src/components/layout/WidthLayout";
 import Meta from "../../src/components/Meta";
+import Title from "../../src/components/Title";
 import { getTvShow2Embed, IMAGE_500 } from "../../src/config";
 import TvShowProps from "../../src/models/TvShowProps";
 
@@ -70,6 +71,14 @@ const TVShow: FC<TvShowProps> = ({ episodeSeasons, detail, similars }) => {
   return (
     <>
       {renderMeta()}
+      <Title
+        title={
+          detail.title ||
+          detail.original_title ||
+          detail.name ||
+          detail.original_name
+        }
+      />
       <IsBrowser>
         <MainLayout>
           <WidthLayout>

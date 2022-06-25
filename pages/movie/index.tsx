@@ -2,6 +2,7 @@ import { GetStaticProps, NextPage } from "next";
 import movie from "../../src/actions/movie";
 import Movie from "../../src/components/Home/Movie";
 import HomeLayout from "../../src/components/layout/HomeLayout";
+import Title from "../../src/components/Title";
 const MoviePage: NextPage = ({ data }: any) => {
   const movieRender = [
     {
@@ -32,6 +33,7 @@ const MoviePage: NextPage = ({ data }: any) => {
   ];
   return (
     <HomeLayout>
+      <Title />
       {movieRender?.map((item) => (
         <Movie
           data={item.results}

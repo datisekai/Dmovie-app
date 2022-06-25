@@ -4,32 +4,32 @@ import axiosClient from "../config/axiosClient";
 const tv = {
   getAiringToday: async (page = 1) => {
     const dataAtd = await axiosClient.get(
-      `/tv/airing_today?api_key=${API_KEY}&page=${page}`
+      `/tv/airing_today?api_key=${API_KEY}&page=${page}&language=vi`
     );
     return dataAtd.data;
   },
   getOntheAir: async (page = 1) => {
     const dataOta = await axiosClient.get(
-      `/tv/on_the_air?api_key=${API_KEY}&page=${page}`
+      `/tv/on_the_air?api_key=${API_KEY}&page=${page}&language=vi`
     );
     return dataOta.data;
   },
   getPopular: async (page = 1) => {
     const dataPopular = await axiosClient.get(
-      `/tv/popular?api_key=${API_KEY}&page=${page}`
+      `/tv/popular?api_key=${API_KEY}&page=${page}&language=vi`
     );
     return dataPopular.data;
   },
   getTVTrending: async (page = 1) => {
     const dataTrend = await axiosClient.get(
-      `/trending/tv/day?api_key=${API_KEY}&page=${page}`
+      `/trending/tv/day?api_key=${API_KEY}&page=${page}&language=vi`
     );
 
     return dataTrend.data;
   },
   getRated: async (page = 1) => {
     const dataRated = await axiosClient.get(
-      `/tv/top_rated?api_key=${API_KEY}&page=${page}`
+      `/tv/top_rated?api_key=${API_KEY}&page=${page}&language=vi`
     );
     return dataRated.data;
   },
