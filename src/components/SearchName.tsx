@@ -1,4 +1,4 @@
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box, Grid, styled, TextField, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import HeadlessTippy from "@tippyjs/react/headless";
 import useDebounce from "../hooks/useDebounce";
@@ -9,12 +9,16 @@ import FlexBox from "./FlexBox";
 import { IMAGE_300 } from "../config";
 import Image from "next/image";
 import Link from "next/link";
+import { RootState } from "../redux/store";
+import { useSelector } from "react-redux";
 const SearchName = () => {
   const [focus, setFocus] = useState(false);
   const inputRef = useRef(null);
   const [searchValue, setSearchValue] = useState("");
   const debounceValue = useDebounce(searchValue, 500);
   const [results, setResults] = useState([]);
+
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
   useEffect(() => {
     if (!debounceValue.trim()) {
@@ -41,6 +45,12 @@ const SearchName = () => {
     }
   };
 
+  const SearchField = styled(TextField)(() => ({
+    "& label": {
+      color: `${theme === "dark" ? "#ccc" : "rgba(0, 0, 0, 0.6)"}`,
+    },
+  }));
+
   return (
     <Box>
       <HeadlessTippy
@@ -50,7 +60,6 @@ const SearchName = () => {
         render={(attrs) => (
           <Box
             {...attrs}
-            bgcolor='white'
             width={"500px"}
             border='1px solid #ccc'
             p='20px'
@@ -58,9 +67,10 @@ const SearchName = () => {
               transition: "0.8s",
               overflowY: "scroll",
               overflowX: "hidden",
+              boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.25);",
             }}
             borderRadius='5px'
-            id='searchNameBox'
+            id={theme}
             maxHeight={350}
           >
             <Typography fontWeight={500} fontSize='18px'>
@@ -101,7 +111,7 @@ const SearchName = () => {
           </Box>
         )}
       >
-        <TextField
+        <SearchField
           size='small'
           id='outlined-basic'
           label='Tìm kiếm'

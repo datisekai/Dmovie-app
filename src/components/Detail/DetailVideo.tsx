@@ -43,6 +43,7 @@ const DetailVideo: FC<DetailVideoProps> = ({ data }) => {
                 bgcolor: primary.main,
                 color: "white",
                 ml: "10px",
+                mt: "10px",
                 borderRadius: "10px",
               }}
               key={item.iso_639_1}

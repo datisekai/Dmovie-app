@@ -1,8 +1,9 @@
-import { Grid, Pagination } from "@mui/material";
+import { Grid, Pagination, styled } from "@mui/material";
 import { Box } from "@mui/system";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { FC } from "react";
+import { useSelector } from "react-redux";
 import movie from "../src/actions/movie";
 import tv from "../src/actions/tv";
 import Breadcrumb from "../src/components/Breadcrumbs";
@@ -11,6 +12,7 @@ import FlexBox from "../src/components/FlexBox";
 import HomeCard from "../src/components/HomeCard";
 import HomeLayout from "../src/components/layout/HomeLayout";
 import Title from "../src/components/Title";
+import { RootState } from "../src/redux/store";
 
 interface CategoryProps {
   data: any;
@@ -23,6 +25,13 @@ interface CategoryProps {
 
 const Category: FC<CategoryProps> = ({ data, category, page }) => {
   const router = useRouter();
+  const theme = useSelector((state: RootState) => state.theme.theme);
+
+  const PaginationTheme = styled(Pagination)(() => ({
+    "& .css-1y7coo4-MuiButtonBase-root-MuiPaginationItem-root": {
+      color: `${theme === "dark" ? "#fff" : "rgba(0, 0, 0, 0.87)"}`,
+    },
+  }));
 
   return (
     <HomeLayout>
@@ -34,7 +43,7 @@ const Category: FC<CategoryProps> = ({ data, category, page }) => {
         borderBottom={"1px solid #ccc"}
       >
         <Breadcrumb hasEndLink={category} />
-        <Pagination
+        <PaginationTheme
           count={data.total_pages}
           page={page}
           variant='outlined'

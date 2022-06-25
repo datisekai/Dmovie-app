@@ -31,7 +31,7 @@ const HomeCard: FC<TrendCard> = ({ image, title, id, vote, media_type }) => {
             color: "white",
           }}
         >
-          {vote}
+          {Number(vote).toFixed(1)}
         </Typography>
       </FlexBox>
     </Box>

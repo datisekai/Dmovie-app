@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import categoryData from "./data/category";
 import { stringify } from "querystring";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 interface NavigationProps {
   hasEndLink: linkType;
@@ -19,6 +21,7 @@ interface linkType {
 
 const Breadcrumb: FC<NavigationProps> = ({ hasEndLink }) => {
   const router = useRouter();
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
   let arrayLink = [];
   for (var key in router.query) {
@@ -42,19 +45,27 @@ const Breadcrumb: FC<NavigationProps> = ({ hasEndLink }) => {
   return (
     <Breadcrumbs aria-label='breadcrumb'>
       <Link href={"/"}>
-        <LinkMUI underline='hover' color='inherit'>
+        <LinkMUI
+          underline='hover'
+          color={theme === "dark" ? "#ccc" : "inherit"}
+        >
           Trang chủ
         </LinkMUI>
       </Link>
 
       {linkRender?.map((item) => (
         <Link key={item.url} href={`${item.url}`}>
-          <LinkMUI underline='hover' color='inherit'>
+          <LinkMUI
+            underline='hover'
+            color={theme === "dark" ? "#ccc" : "inherit"}
+          >
             {item.title}
           </LinkMUI>
         </Link>
       ))}
-      <Typography color='text.primary'>{hasEndLink.title}</Typography>
+      <Typography color={theme === "dark" ? "#fff" : "text.primary"}>
+        {hasEndLink.title}
+      </Typography>
     </Breadcrumbs>
   );
 };

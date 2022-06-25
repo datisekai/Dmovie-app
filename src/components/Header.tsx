@@ -1,33 +1,44 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { primary } from "../theme/theme";
-import BackupIcon from "@mui/icons-material/Backup";
-import { TextFields } from "@mui/icons-material";
-import WidthLayout from "./layout/WidthLayout";
-import useScrollProgress from "../hooks/useScrollProgress";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import { Box, Button, FormControlLabel, Typography } from "@mui/material";
 import Link from "next/link";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useScrollProgress from "../hooks/useScrollProgress";
+import { setTheme } from "../redux/slices/themeSlice";
+import { RootState } from "../redux/store";
+import { primary } from "../theme/theme";
+import DarkModeIcon from "./DarkModeIcon";
+import WidthLayout from "./layout/WidthLayout";
 import SearchName from "./SearchName";
 import Sidenav from "./Sidenav";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-
 const Header = () => {
   const [showBar, setShowBar] = useState(false);
   const width = useScrollProgress();
+  const dispatch = useDispatch();
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
   const handleHideBar = () => {
     setShowBar(false);
   };
 
+  const handleChangTheme = (e: any) => {
+    if (e.target.checked) {
+      dispatch(setTheme("dark"));
+    } else {
+      dispatch(setTheme("light"));
+    }
+  };
+
   return (
     <Box
-      id='shadowBottom'
+      id={theme}
       sx={{
         position: "fixed",
         top: 0,
         right: 0,
         left: 0,
         zIndex: 90,
-        bgcolor: "white",
+        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)",
       }}
     >
       <Sidenav display={showBar} handleHide={handleHideBar} />
@@ -57,26 +68,40 @@ const Header = () => {
             </a>
           </Link>
           <SearchName />
-          <Box
-            sx={{
-              display: {
-                md: "block",
-                xs: "none",
-              },
-            }}
-          >
-            <Button startIcon={<BackupIcon />} variant='text'>
+          <Box>
+            {/* <Button startIcon={<BackupIcon />} variant='text'>
               Tải lên
+            </Button> */}
+            <FormControlLabel
+              control={
+                <DarkModeIcon
+                  onChange={handleChangTheme}
+                  sx={{ m: 1 }}
+                  checked={theme === "dark" ? true : false}
+                />
+              }
+              label=''
+            />
+            <Button
+              sx={{
+                display: {
+                  md: "inline-flex",
+                  xs: "none",
+                },
+              }}
+              variant='contained'
+            >
+              Đăng nhập
             </Button>
-            <Button variant='contained'>Đăng nhập</Button>
           </Box>
         </Box>
       </WidthLayout>
-      {width > 0 && (
-        <Box className='progress-container'>
-          <Box className='progress-bar' style={{ width: `${width}%` }}></Box>
-        </Box>
-      )}
+      <Box
+        id='progress-container'
+        sx={{ bgcolor: `${theme === "dark" ? "#333" : "#ccc"}` }}
+      >
+        <Box id='progress-bar' style={{ width: `${width}%` }}></Box>
+      </Box>
     </Box>
   );
 };

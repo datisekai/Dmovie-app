@@ -66,15 +66,14 @@ img{
   cursor: pointer;
 }
 
-.progress-container {
+#progress-container {
   width: 100%;
-  height: 3px;
-  background: #ccc;
+  height: 2px;
 }
 
 /* The progress bar (scroll indicator) */
-.progress-bar {
-  height: 3px;
+#progress-bar {
+  height: 2px;
   background-image: linear-gradient(to right, #0099f7, #f11712);
   width: 0%;
 }
@@ -147,4 +146,14 @@ img{
   #iconBar{
     display: block;
   }
+}
+
+#dark{
+  background-color: #222 !important;
+  color: white !important;
+}
+
+#light{
+  background-color: white !important;
+  color: black !important;
 }

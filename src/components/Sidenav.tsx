@@ -1,6 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 import { primary } from "../theme/theme";
 import sidebar from "./data/sidebar";
 
@@ -11,6 +13,7 @@ interface SidenavProps {
 
 const Sidenav: FC<SidenavProps> = ({ display, handleHide }) => {
   const router = useRouter();
+  const theme = useSelector((state: RootState) => state.theme.theme);
   return (
     <Box
       sx={{
@@ -32,8 +35,9 @@ const Sidenav: FC<SidenavProps> = ({ display, handleHide }) => {
           width: "70%",
           animation: "0.3s ease-in leftToRight",
           p: "20px",
+          boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.25)",
         }}
-        id='shadowBox'
+        id={theme}
       >
         <Typography
           fontWeight={600}

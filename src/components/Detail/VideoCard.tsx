@@ -11,7 +11,8 @@ const VideoCard: FC<VideoCard> = ({ keyVideo }) => {
       <iframe
         width={"100%"}
         height='auto'
-        style={{ aspectRatio: "16/9" }}
+        style={{ aspectRatio: "16/9", border: "none", borderRadius: "10px" }}
+        allowFullScreen={true}
         src={keyVideo}
       ></iframe>
     );
