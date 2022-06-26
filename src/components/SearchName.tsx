@@ -49,6 +49,11 @@ const SearchName = () => {
     "& label": {
       color: `${theme === "dark" ? "#ccc" : "rgba(0, 0, 0, 0.6)"}`,
     },
+    "& .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input": {
+      backgroundColor: `${
+        theme === "dark" ? "#2a2a2a !important" : "#fff !important"
+      }`,
+    },
   }));
 
   return (

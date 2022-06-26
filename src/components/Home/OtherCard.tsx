@@ -14,7 +14,11 @@ const OtherCard: FC<OtherCard> = ({ image, title, id, media_type }) => {
         </a>
       </Link>
 
-      <Typography>{limitName(title)}</Typography>
+      <Link href={`/${media_type === "movie" ? "movie" : "tv-show"}/${id}`}>
+        <a>
+          <Typography>{limitName(title)}</Typography>
+        </a>
+      </Link>
     </Box>
   );
 };

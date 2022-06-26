@@ -16,18 +16,18 @@ const SimilarCard: FC<SimilarMovieCard> = ({
   media_type,
 }) => {
   return (
-    <FlexBox mt='10px'>
-      <Link href={`/${media_type}/${id}`}>
-        <a>
+    <Link href={`/${media_type}/${id}`}>
+      <a>
+        <FlexBox mt='10px'>
           <img src={`${IMAGE_300}${image}`} id='similarCard' alt='' />
-        </a>
-      </Link>
 
-      <Box pl='10px'>
-        <Typography>{limitName(name)}</Typography>
-        <Typography color={primary.main}>{vote.toFixed(2)}</Typography>
-      </Box>
-    </FlexBox>
+          <Box pl='10px'>
+            <Typography>{limitName(name)}</Typography>
+            <Typography color={primary.main}>{vote.toFixed(2)}</Typography>
+          </Box>
+        </FlexBox>
+      </a>
+    </Link>
   );
 };
 

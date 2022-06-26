@@ -70,7 +70,7 @@ const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
                     getMovie2Embed(router.query.id as string)
                   }
                 />
-                <DetailVideo data={detail} />
+                <DetailVideo data={detail} media_type='movie' />
                 {router.query.key && (
                   <Button
                     onClick={handleBackMovie}
@@ -81,7 +81,7 @@ const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
                     Back to Movie
                   </Button>
                 )}
-                <Trallers data={video?.swipers} />
+                {video.swipers && <Trallers data={video?.swipers} />}
                 <Reviews data={reviews} />
               </Box>
               <Similars data={similars} media_type='movie' />

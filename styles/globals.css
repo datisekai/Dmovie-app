@@ -151,9 +151,11 @@ img{
 #dark{
   background-color: #222 !important;
   color: white !important;
+  transition: 0.6s;
 }
 
 #light{
   background-color: white !important;
   color: black !important;
+  transition: 0.6s;
 }

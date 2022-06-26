@@ -26,7 +26,7 @@ const Trallers: FC<PropsData> = ({ data }) => {
   return (
     <Box sx={{ width: "100%", mt: "20px" }}>
       <Typography my='10px' fontWeight={500} fontSize='18px'>
-        Xem thêm traller
+        Xem thêm trailer
       </Typography>
       <Swiper navigation autoplay spaceBetween={20} slidesPerView={slidesView}>
         {data?.map((item: any) => (

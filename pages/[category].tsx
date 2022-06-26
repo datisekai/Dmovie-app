@@ -12,6 +12,7 @@ import FlexBox from "../src/components/FlexBox";
 import HomeCard from "../src/components/HomeCard";
 import HomeLayout from "../src/components/layout/HomeLayout";
 import Title from "../src/components/Title";
+import useChangeWidth from "../src/hooks/useChangeWidth";
 import { RootState } from "../src/redux/store";
 
 interface CategoryProps {
@@ -24,6 +25,7 @@ interface CategoryProps {
 }
 
 const Category: FC<CategoryProps> = ({ data, category, page }) => {
+  const width = useChangeWidth();
   const router = useRouter();
   const theme = useSelector((state: RootState) => state.theme.theme);
 
@@ -41,6 +43,10 @@ const Category: FC<CategoryProps> = ({ data, category, page }) => {
         justifyContent='space-between'
         pb='10px'
         borderBottom={"1px solid #ccc"}
+        flexDirection={{
+          md: "row",
+          xs: "column",
+        }}
       >
         <Breadcrumb hasEndLink={category} />
         <PaginationTheme
@@ -48,6 +54,14 @@ const Category: FC<CategoryProps> = ({ data, category, page }) => {
           page={page}
           variant='outlined'
           color='primary'
+          sx={{
+            mt: {
+              md: "0px",
+              xs: "10px",
+            },
+          }}
+          siblingCount={width > 768 ? 1 : width > 400 ? 0 : -1}
+          size={"medium"}
           onChange={(e, page) => {
             router.push(
               `[category]?page=${page}`,

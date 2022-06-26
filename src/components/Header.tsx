@@ -62,25 +62,29 @@ const Header = () => {
           </div>
           <Link href={"/"}>
             <a>
-              <Typography color={primary.main} fontSize='25px'>
+              <Typography component={"h2"} color={primary.main} fontSize='25px'>
                 DMovie
               </Typography>
             </a>
           </Link>
-          <SearchName />
+          <Box
+            sx={{
+              display: {
+                md: "block",
+                xs: "none",
+              },
+            }}
+          >
+            <SearchName />
+          </Box>
           <Box>
             {/* <Button startIcon={<BackupIcon />} variant='text'>
               Tải lên
             </Button> */}
-            <FormControlLabel
-              control={
-                <DarkModeIcon
-                  onChange={handleChangTheme}
-                  sx={{ m: 1 }}
-                  checked={theme === "dark" ? true : false}
-                />
-              }
-              label=''
+            <DarkModeIcon
+              onChange={handleChangTheme}
+              sx={{ my: 1 }}
+              checked={theme === "dark" ? true : false}
             />
             <Button
               sx={{

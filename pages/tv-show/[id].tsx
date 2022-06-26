@@ -110,7 +110,7 @@ const TVShow: FC<TvShowProps> = ({ episodeSeasons, detail, similars }) => {
                     episode={episode.toString()}
                   />
                 )}
-                <DetailVideo data={detail} />
+                <DetailVideo data={detail} media_type='tv' />
                 <Box>
                   {episodeSeasons?.map((item: any, index: number) => {
                     return (

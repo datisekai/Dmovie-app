@@ -1,14 +1,18 @@
-import { Box, Typography } from "@mui/material";
-import React, { FC } from "react";
+import { Box, Button, Typography } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { FC, useState } from "react";
 import { primary } from "../../theme/theme";
 import FlexBox from "../FlexBox";
 import ProducerDetail from "./ProducerDetail";
 
 interface DetailVideoProps {
   data: any;
+  media_type: string;
 }
 
-const DetailVideo: FC<DetailVideoProps> = ({ data }) => {
+const DetailVideo: FC<DetailVideoProps> = ({ data, media_type }) => {
+  const [showAll, setShowAll] = useState(false);
   return (
     <Box mt='20px'>
       <Typography mt='10px' fontSize={"18px"} fontWeight='500'>
@@ -33,7 +37,7 @@ const DetailVideo: FC<DetailVideoProps> = ({ data }) => {
       <Typography mt='10px'>
         Release date: {data.release_date || data.first_air_date}
       </Typography>
-      <FlexBox mt='10px' alignItems={"center"}>
+      {/* <FlexBox mt='10px' alignItems={"center"}>
         <Typography>Languages</Typography>
         <FlexBox alignItems={"center"} flexWrap='wrap'>
           {data.spoken_languages.map((item: any) => (
@@ -52,28 +56,39 @@ const DetailVideo: FC<DetailVideoProps> = ({ data }) => {
             </Typography>
           ))}
         </FlexBox>
-      </FlexBox>
+      </FlexBox> */}
 
       <FlexBox mt='10px' alignItems={"center"}>
         <Typography>Genres</Typography>
         <FlexBox alignItems={"center"} flexWrap='wrap'>
           {data.genres.map((item: any) => (
-            <Typography
-              sx={{
-                ml: "10px",
-                px: "10px",
-                color: primary.main,
-              }}
+            <Link
               key={item.id}
+              href={`/search?${media_type === "movie" ? "gm=" : "gt="}${
+                item.id
+              }`}
             >
-              {item.name}
-            </Typography>
+              <a>
+                <Typography
+                  sx={{
+                    ml: "10px",
+                    px: "10px",
+                    color: primary.main,
+                  }}
+                >
+                  {item.name}
+                </Typography>
+              </a>
+            </Link>
           ))}
         </FlexBox>
       </FlexBox>
       <Typography component={"p"} mt='10px'>
-        {data.overview}
+        {showAll ? data.overview : data.overview.slice(0, 220) + "..."}
       </Typography>
+      <Button onClick={() => setShowAll(!showAll)}>
+        {showAll ? "Thu gọn" : "Xem tất cả"}
+      </Button>
     </Box>
   );
 };

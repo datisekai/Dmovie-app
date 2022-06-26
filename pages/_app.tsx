@@ -12,7 +12,12 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <NextNProgress />
+      <NextNProgress
+        showOnShallow={true}
+        options={{
+          showSpinner: false,
+        }}
+      />
       <Provider store={store}>
         <ThemeLayout>
           <Component {...pageProps} />
