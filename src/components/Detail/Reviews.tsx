@@ -30,10 +30,12 @@ const Reviews = ({ data }: any) => {
       const data = snapshot.val();
       if (data !== null) {
         Object.values(data).map((item: any) => {
-          setComments((oldComments: any) => {
-            const listComments: any[] = [...oldComments, item];
-            return listComments.sort((a, b) => b.createdAt - a.createdAt);
-          });
+          if (item.movieId === router.query.id) {
+            setComments((oldComments: any) => {
+              const listComments: any[] = [...oldComments, item];
+              return listComments.sort((a, b) => b.createdAt - a.createdAt);
+            });
+          }
         });
       }
     });
