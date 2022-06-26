@@ -8,14 +8,18 @@ import { setTheme } from "../redux/slices/themeSlice";
 import { RootState } from "../redux/store";
 import { primary } from "../theme/theme";
 import DarkModeIcon from "./DarkModeIcon";
+import FlexBox from "./FlexBox";
 import WidthLayout from "./layout/WidthLayout";
+import Login from "./Login";
 import SearchName from "./SearchName";
 import Sidenav from "./Sidenav";
+import User from "./User";
 const Header = () => {
   const [showBar, setShowBar] = useState(false);
   const width = useScrollProgress();
   const dispatch = useDispatch();
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const user = useSelector((state: RootState) => state.auth.user);
 
   const handleHideBar = () => {
     setShowBar(false);
@@ -77,7 +81,7 @@ const Header = () => {
           >
             <SearchName />
           </Box>
-          <Box>
+          <FlexBox alignItems={"center"}>
             {/* <Button startIcon={<BackupIcon />} variant='text'>
               Tải lên
             </Button> */}
@@ -86,18 +90,8 @@ const Header = () => {
               sx={{ my: 1 }}
               checked={theme === "dark" ? true : false}
             />
-            <Button
-              sx={{
-                display: {
-                  md: "inline-flex",
-                  xs: "none",
-                },
-              }}
-              variant='contained'
-            >
-              Đăng nhập
-            </Button>
-          </Box>
+            {user ? <User /> : <Login />}
+          </FlexBox>
         </Box>
       </WidthLayout>
       <Box

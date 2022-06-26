@@ -9,12 +9,12 @@ const ReviewCard: FC<ReviewCard> = ({ image, name, createdAt, content }) => {
   const [showAll, setShowAll] = useState(false);
   return (
     <FlexBox mt='10px'>
-      <Avatar alt='Remy Sharp' src={`${(image && image.slice(1)) || ""}`} />
+      <Avatar alt='Remy Sharp' src={`${image}`} />
       <Box pl='10px'>
         <FlexBox alignItems={"center"}>
           <Typography fontWeight={500}>{name}</Typography>
           <Typography component={"span"} pl='10px' color={"#333"}>
-            {calculateCreatedTime(createdAt)}
+            {createdAt}
           </Typography>
         </FlexBox>
         <Typography component={"p"} mt='10px'>

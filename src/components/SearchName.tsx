@@ -1,16 +1,13 @@
 import { Box, Grid, styled, TextField, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
 import HeadlessTippy from "@tippyjs/react/headless";
-import useDebounce from "../hooks/useDebounce";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import movie from "../actions/movie";
 import search from "../actions/search";
-import SearchNameCard from "./SearchNameCard";
-import FlexBox from "./FlexBox";
-import { IMAGE_300 } from "../config";
-import Image from "next/image";
-import Link from "next/link";
+import useDebounce from "../hooks/useDebounce";
 import { RootState } from "../redux/store";
-import { useSelector } from "react-redux";
+import SearchNameCard from "./SearchNameCard";
 const SearchName = () => {
   const [focus, setFocus] = useState(false);
   const inputRef = useRef(null);
