@@ -8,14 +8,14 @@ const VideoCard: FC<VideoCard> = ({ keyVideo }) => {
 
   if (!router.query.key) {
     return (
-      // <iframe
-      //   width={"100%"}
-      //   height='auto'
-      //   style={{ aspectRatio: "16/9", border: "none", borderRadius: "10px" }}
-      //   allowFullScreen={true}
-      //   src={keyVideo}
-      // ></iframe>
-      <p></p>
+      <iframe
+        width={"100%"}
+        height='auto'
+        style={{ aspectRatio: "16/9", border: "none", borderRadius: "10px" }}
+        allowFullScreen={true}
+        src={keyVideo}
+      ></iframe>
+      // <p></p>
     );
   }
 

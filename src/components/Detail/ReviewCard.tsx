@@ -60,34 +60,34 @@ const ReviewCard: FC<ReviewCard> = ({
     const [repComment, setRepComment] = useState(name + " ");
     const router = useRouter();
     const [comments, setComments] = useState<any[]>([]);
-    useEffect(() => {
-      const unSub = onValue(ref(database), (snapshot) => {
-        const data = snapshot.val();
+    // useEffect(() => {
+    //   const unSub = onValue(ref(database), (snapshot) => {
+    //     const data = snapshot.val();
 
-        if (data !== null) {
-          let commentsRealtime: any[] = [];
+    //     if (data !== null) {
+    //       let commentsRealtime: any[] = [];
 
-          for (const property in data) {
-            if (
-              data[property].parentId != null &&
-              data[property].parentId == uuid
-            ) {
-              commentsRealtime.push({
-                ...data[property],
-                uuid: property,
-              });
-            }
-          }
-          // setComments(
-          //   commentsRealtime.sort((a, b) => +b.createdAt - +a.createdAt)
-          // );
-        }
-      });
+    //       for (const property in data) {
+    //         if (
+    //           data[property].parentId != null &&
+    //           data[property].parentId == uuid
+    //         ) {
+    //           commentsRealtime.push({
+    //             ...data[property],
+    //             uuid: property,
+    //           });
+    //         }
+    //       }
+    // setComments(
+    //   commentsRealtime.sort((a, b) => +b.createdAt - +a.createdAt)
+    // );
+    //     }
+    //   });
 
-      return () => {
-        unSub();
-      };
-    }, []);
+    //   return () => {
+    //     unSub();
+    //   };
+    // }, []);
 
     const handleDelete = () => {
       swal({
