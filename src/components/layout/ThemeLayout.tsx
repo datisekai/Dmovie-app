@@ -33,7 +33,7 @@ const ThemeLayout: FC<Props> = ({ children }) => {
     } else {
       localStorage.setItem("theme", "light");
     }
-  }, []);
+  }, [dispatch]);
   return <>{children}</>;
 };
 

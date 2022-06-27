@@ -26,7 +26,10 @@ const Reviews = ({ data, media_type }: any) => {
   const theme = useSelector((state: RootState) => state.theme.theme);
 
   const router = useRouter();
-  const [comments, setComments] = useState<any[]>([]);
+  const [comments, setComments] = useState<any>({
+    parents: [],
+    childs: [],
+  });
 
   useEffect(() => {
     const unSub = onValue(ref(database), (snapshot) => {
@@ -38,8 +41,7 @@ const Reviews = ({ data, media_type }: any) => {
         for (const property in data) {
           if (
             data[property].movieId === router.query.id &&
-            data[property].media_type === media_type &&
-            data[property].parentId == null
+            data[property].media_type === media_type
           ) {
             commentsRealtime.push({
               ...data[property],
@@ -47,9 +49,14 @@ const Reviews = ({ data, media_type }: any) => {
             });
           }
         }
-        setComments(
-          commentsRealtime.sort((a, b) => +b.createdAt - +a.createdAt)
+        commentsRealtime.sort((a, b) => +b.createdAt - +a.createdAt);
+        const parents = commentsRealtime.filter(
+          (item) => item.parentId == null
         );
+        setComments({
+          parents: parents.sort((a, b) => +b.createdAt - +a.createdAt),
+          childs: commentsRealtime,
+        });
       }
     });
 
@@ -70,7 +77,7 @@ const Reviews = ({ data, media_type }: any) => {
       </FlexBox>
       {user && <MainAddComment media_type={media_type} />}
       <Box mt='20px'>
-        {comments.map((item: any) => (
+        {comments.parents.map((item: any) => (
           <ReviewCard
             key={item.id}
             content={item.content}
@@ -81,10 +88,14 @@ const Reviews = ({ data, media_type }: any) => {
             uuid={item.uuid}
             media_type={media_type}
             reactions={item.reactions}
+            childs={comments.childs.filter(
+              (child: any) => child.parentId == item.uuid
+            )}
+            listComments={comments.childs}
           />
         ))}
       </Box>
-      <Box>
+      {/* <Box>
         {data?.map((item: any, index: number) => (
           <ReviewCard
             key={index}
@@ -97,7 +108,7 @@ const Reviews = ({ data, media_type }: any) => {
             name={item.author}
           />
         ))}
-      </Box>
+      </Box> */}
     </Box>
   );
 };

@@ -34,6 +34,8 @@ const ReviewCard: FC<ReviewCard> = ({
   userId,
   media_type,
   reactions,
+  listComments,
+  childs,
 }) => {
   const RenderChild: FC<ReviewCard> = ({
     content,
@@ -44,6 +46,8 @@ const ReviewCard: FC<ReviewCard> = ({
     userId,
     uuid,
     reactions,
+    childs,
+    listComments,
   }) => {
     const [showUpdate, setShowUpdate] = useState(false);
     const [showAll, setShowAll] = useState(false);
@@ -74,9 +78,9 @@ const ReviewCard: FC<ReviewCard> = ({
               });
             }
           }
-          setComments(
-            commentsRealtime.sort((a, b) => +b.createdAt - +a.createdAt)
-          );
+          // setComments(
+          //   commentsRealtime.sort((a, b) => +b.createdAt - +a.createdAt)
+          // );
         }
       });
 
@@ -105,7 +109,6 @@ const ReviewCard: FC<ReviewCard> = ({
           content: comment,
         });
         setShowUpdate(false);
-        setShowMenu(false);
       }
     };
 
@@ -283,8 +286,8 @@ const ReviewCard: FC<ReviewCard> = ({
             </Box>
           )}
         </FlexBox>
-        {comments &&
-          comments.map((item: any) => (
+        {childs &&
+          childs.map((item: any) => (
             <Box pl={"20px"} key={item.uuid}>
               <RenderChild
                 image={item.photoURL}
@@ -295,6 +298,10 @@ const ReviewCard: FC<ReviewCard> = ({
                 userId={item.userId}
                 media_type={item.media_type}
                 reactions={item.reactions}
+                childs={listComments?.filter(
+                  (child: any) => child.parentId == item.uuid
+                )}
+                listComments={listComments}
               />
             </Box>
           ))}
@@ -313,6 +320,8 @@ const ReviewCard: FC<ReviewCard> = ({
         userId={userId}
         media_type={media_type}
         reactions={reactions}
+        childs={childs}
+        listComments={listComments}
       />
     </>
   );

@@ -6,6 +6,7 @@ export default interface ReviewCard {
   uuid?: string;
   userId?: string;
   media_type?: string;
-  comments?: any[];
   reactions?: any;
+  childs?: any[];
+  listComments?: any[];
 }
