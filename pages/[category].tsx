@@ -73,7 +73,7 @@ const Category: FC<CategoryProps> = ({ data, category, page }) => {
       <Box mt='10px'>
         <Grid container spacing={"10px"}>
           {data?.results?.map((item: any) => (
-            <Grid item lg={4} key={item.id} md={6} xs={12}>
+            <Grid item lg={4} key={item.id} md={6} sm={6} xs={12}>
               <HomeCard
                 media_type={item.media_type || "movie"}
                 id={item.id}

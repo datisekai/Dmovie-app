@@ -82,7 +82,7 @@ const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
                   </Button>
                 )}
                 {video.swipers && <Trallers data={video?.swipers} />}
-                <Reviews data={reviews} />
+                <Reviews data={reviews} media_type='tv' />
               </Box>
               <Similars data={similars} media_type='movie' />
             </Box>

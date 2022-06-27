@@ -159,3 +159,27 @@ img{
   color: black !important;
   transition: 0.6s;
 }
+
+#inputSearch{
+  height: 40px;
+  width: 500px;
+  outline-color: #0099f7;
+  font-size: 16px;
+  border-radius: 10px;
+  padding: 8.5px 14px;
+  border: none;
+}
+
+.reactImage{
+  width: 30px;
+  height: 30px;
+  margin-left: 4px;
+}
+
+.reactImage:hover{
+  transform: scale(1.2);
+}
+
+.reactImage:first-child{
+  margin-left: 0;
+}

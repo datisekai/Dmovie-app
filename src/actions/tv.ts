@@ -69,6 +69,10 @@ const tv = {
       (item: any) => item.episode_number == episode
     );
   },
+  getReviews: async (id: string) => {
+    const data = await axiosClient.get(`/tv/${id}/reviews?api_key=${API_KEY}`);
+    return data.data;
+  },
 };
 
 export default tv;

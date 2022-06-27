@@ -5,6 +5,7 @@ import { FC } from "react";
 import tv from "../../src/actions/tv";
 import DetailEpisode from "../../src/components/Detail/DetailEpisode";
 import DetailVideo from "../../src/components/Detail/DetailVideo";
+import Reviews from "../../src/components/Detail/Reviews";
 import Seasons from "../../src/components/Detail/Seasons";
 import Similars from "../../src/components/Detail/Similars";
 import VideoCard from "../../src/components/Detail/VideoCard";
@@ -16,7 +17,12 @@ import Title from "../../src/components/Title";
 import { getTvShow2Embed, IMAGE_500 } from "../../src/config";
 import TvShowProps from "../../src/models/TvShowProps";
 
-const TVShow: FC<TvShowProps> = ({ episodeSeasons, detail, similars }) => {
+const TVShow: FC<TvShowProps> = ({
+  episodeSeasons,
+  detail,
+  similars,
+  reviews,
+}) => {
   const router = useRouter();
   const season = router.query.s;
   const episode = router.query.e;
@@ -122,6 +128,7 @@ const TVShow: FC<TvShowProps> = ({ episodeSeasons, detail, similars }) => {
                     );
                   })}
                 </Box>
+                <Reviews data={reviews} media_type='tv' />
               </Box>
 
               <Similars data={similars} media_type='tv-show' />
@@ -141,12 +148,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const dataSimilars = await tv.getSimilars(id);
   const dataDetail = await tv.getDetail(id);
   const dataEpisode = await tv.getEpisodeSeason(id, dataDetail.seasons);
+  const dataReviews = await tv.getReviews(id);
 
   return {
     props: {
       similars: dataSimilars.results,
       detail: dataDetail,
       episodeSeasons: dataEpisode,
+      reviews: dataReviews.results,
     },
   };
 };

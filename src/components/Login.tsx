@@ -1,11 +1,9 @@
 import { Button } from "@mui/material";
 import { signInWithPopup } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import { auth, provider } from "../config/firebase";
 import { setUser } from "../redux/slices/authSlice";
-import { RootState } from "../redux/store";
-import User from "./User";
 const Login = () => {
   const dispatch = useDispatch();
   const handleLoginGoogle = async () => {

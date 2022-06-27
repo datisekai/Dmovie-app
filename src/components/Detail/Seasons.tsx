@@ -32,8 +32,6 @@ const Seasons: FC<SeasonsProps> = ({ data, number }) => {
     );
   };
 
-  console.log(slidesView);
-
   return (
     <Box sx={{ width: "100%", mt: "20px" }}>
       <Typography my='10px' fontWeight={500} fontSize='18px'>

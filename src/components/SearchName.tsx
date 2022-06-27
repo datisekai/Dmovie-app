@@ -10,7 +10,7 @@ import { RootState } from "../redux/store";
 import SearchNameCard from "./SearchNameCard";
 const SearchName = () => {
   const [focus, setFocus] = useState(false);
-  const inputRef = useRef(null);
+  const inputRef = useRef<any>(null);
   const [searchValue, setSearchValue] = useState("");
   const debounceValue = useDebounce(searchValue, 500);
   const [results, setResults] = useState([]);
@@ -113,7 +113,7 @@ const SearchName = () => {
           </Box>
         )}
       >
-        <SearchField
+        {/* <SearchField
           size='small'
           id='outlined-basic'
           label='Tìm kiếm'
@@ -130,6 +130,19 @@ const SearchName = () => {
             width: "500px",
           }}
           variant='outlined'
+        /> */}
+        <input
+          type='text'
+          value={searchValue}
+          onChange={handleChange}
+          ref={inputRef}
+          onFocus={() => setFocus(true)}
+          id='inputSearch'
+          placeholder='Tìm kiếm'
+          style={{
+            backgroundColor: `${theme === "dark" ? "#2a2a2a" : "#f2f2f2"}`,
+            color: `${theme === "dark" ? "#ccc" : "#333"}`,
+          }}
         />
       </HeadlessTippy>
     </Box>

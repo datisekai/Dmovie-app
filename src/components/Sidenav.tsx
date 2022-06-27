@@ -1,11 +1,16 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { primary } from "../theme/theme";
 import sidebar from "./data/sidebar";
-
+import Login from "./Login";
+import LoginIcon from "@mui/icons-material/Login";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../config/firebase";
+import swal from "sweetalert";
+import { setUser } from "../redux/slices/authSlice";
 interface SidenavProps {
   display: boolean;
   handleHide: any;
@@ -14,6 +19,19 @@ interface SidenavProps {
 const Sidenav: FC<SidenavProps> = ({ display, handleHide }) => {
   const router = useRouter();
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const user = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useDispatch();
+  const handleLogin = async () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        dispatch(setUser(result.user));
+      })
+      .catch((error) => {
+        console.log(error);
+
+        swal("Error", "Internal server", "error");
+      });
+  };
   return (
     <Box
       sx={{
@@ -64,6 +82,17 @@ const Sidenav: FC<SidenavProps> = ({ display, handleHide }) => {
             </Box>
           );
         })}
+        {!user && (
+          <Button
+            sx={{ mt: "10px", textAlign: "left" }}
+            fullWidth
+            onClick={handleLogin}
+            variant={"text"}
+            startIcon={<LoginIcon />}
+          >
+            Đăng nhập
+          </Button>
+        )}
       </Box>
     </Box>
   );

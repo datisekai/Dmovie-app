@@ -18,42 +18,46 @@ import {
 import FlexBox from "../FlexBox";
 import ReviewCard from "./ReviewCard";
 
-const Reviews = ({ data }: any) => {
+import TextComment from "./TextComment";
+import MainAddComment from "./MainAddComment";
+
+const Reviews = ({ data, media_type }: any) => {
   const user: any = useSelector((state: RootState) => state.auth.user);
   const theme = useSelector((state: RootState) => state.theme.theme);
-  const [comment, setComment] = useState("");
+
   const router = useRouter();
   const [comments, setComments] = useState<any[]>([]);
 
   useEffect(() => {
-    onValue(ref(database), (snapshot) => {
+    const unSub = onValue(ref(database), (snapshot) => {
       const data = snapshot.val();
+
       if (data !== null) {
-        Object.values(data).map((item: any) => {
-          if (item.movieId === router.query.id) {
-            setComments((oldComments: any) => {
-              const listComments: any[] = [...oldComments, item];
-              return listComments.sort((a, b) => b.createdAt - a.createdAt);
+        let commentsRealtime: any[] = [];
+
+        for (const property in data) {
+          if (
+            data[property].movieId === router.query.id &&
+            data[property].media_type === media_type &&
+            data[property].parentId == null
+          ) {
+            commentsRealtime.push({
+              ...data[property],
+              uuid: property,
             });
           }
-        });
+        }
+        setComments(
+          commentsRealtime.sort((a, b) => +b.createdAt - +a.createdAt)
+        );
       }
     });
+
+    return () => {
+      unSub();
+    };
   }, []);
 
-  const handleComment = () => {
-    set(ref(database, `${user.uid}`), {
-      userId: user.uid,
-      content: comment,
-      parentId: null,
-      movieId: router.query.id,
-      photoURL: user.photoURL,
-      displayName: user.displayName,
-      createdAt: Date.now(),
-      id: Math.random(),
-    });
-    setComment("");
-  };
   return (
     <Box mt='10px'>
       <FlexBox pb='10px' alignItems={"center"} borderBottom={"1px solid #ccc"}>
@@ -64,31 +68,7 @@ const Reviews = ({ data }: any) => {
           {data.length + comments.length}
         </Typography>
       </FlexBox>
-      {user && (
-        <FlexBox alignItems={"center"} sx={{ my: "10px" }}>
-          <Avatar alt={user.displayName} src={user.photoURL} />
-          <TextareaAutosize
-            aria-label='minimum height'
-            minRows={2}
-            placeholder='Viết bình luận'
-            onChange={(e) => setComment(e.target.value)}
-            value={comment}
-            style={{
-              width: "100%",
-              marginLeft: "10px",
-              outline: "none",
-              border: "none",
-              backgroundColor: `${theme === "dark" ? "#2a2a2a" : "#F2F2F2"}`,
-              padding: "10px",
-              borderRadius: "10px",
-              fontSize: "15px",
-            }}
-          />
-          <Button onClick={handleComment} disabled={comment ? false : true}>
-            Gửi
-          </Button>
-        </FlexBox>
-      )}
+      {user && <MainAddComment media_type={media_type} />}
       <Box mt='20px'>
         {comments.map((item: any) => (
           <ReviewCard
@@ -97,6 +77,10 @@ const Reviews = ({ data }: any) => {
             createdAt={calculateCreatedTime2(item.createdAt)}
             image={item.photoURL}
             name={item.displayName}
+            userId={item.userId}
+            uuid={item.uuid}
+            media_type={media_type}
+            reactions={item.reactions}
           />
         ))}
       </Box>
