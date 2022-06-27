@@ -285,7 +285,7 @@ const ReviewCard: FC<ReviewCard> = ({
         </FlexBox>
         {comments &&
           comments.map((item: any) => (
-            <Box pl={"20px"}>
+            <Box pl={"20px"} key={item.uuid}>
               <RenderChild
                 image={item.photoURL}
                 name={item.displayName}
