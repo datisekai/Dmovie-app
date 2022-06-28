@@ -1,18 +1,27 @@
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Avatar, Box, Button, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  TextareaAutosize,
+  Typography,
+} from "@mui/material";
 import HeadlessTippy from "@tippyjs/react/headless";
-import { ref, remove, set, update } from "firebase/database";
+import { onValue, ref, remove, set, update } from "firebase/database";
 import { useRouter } from "next/router";
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import swal from "sweetalert";
 import { v4 as uuidv4 } from "uuid";
 import { database } from "../../config/firebase";
 import ReviewCard from "../../models/ReviewCard";
 import { RootState } from "../../redux/store";
-import { calculateCreatedTime2 } from "../../utils/formatTime";
+import {
+  calculateCreatedTime,
+  calculateCreatedTime2,
+} from "../../utils/formatTime";
+import { reactionGif, reactionImage } from "../data/reaction";
 import FlexBox from "../FlexBox";
-import InfoReactions from "./InfoReactions";
 import Reaction from "./Reaction";
 import TextComment from "./TextComment";
 
@@ -50,6 +59,35 @@ const ReviewCard: FC<ReviewCard> = ({
     const [showRep, setShowRep] = useState(false);
     const [repComment, setRepComment] = useState(name + " ");
     const router = useRouter();
+    const [comments, setComments] = useState<any[]>([]);
+    // useEffect(() => {
+    //   const unSub = onValue(ref(database), (snapshot) => {
+    //     const data = snapshot.val();
+
+    //     if (data !== null) {
+    //       let commentsRealtime: any[] = [];
+
+    //       for (const property in data) {
+    //         if (
+    //           data[property].parentId != null &&
+    //           data[property].parentId == uuid
+    //         ) {
+    //           commentsRealtime.push({
+    //             ...data[property],
+    //             uuid: property,
+    //           });
+    //         }
+    //       }
+    // setComments(
+    //   commentsRealtime.sort((a, b) => +b.createdAt - +a.createdAt)
+    // );
+    //     }
+    //   });
+
+    //   return () => {
+    //     unSub();
+    //   };
+    // }, []);
 
     const handleDelete = () => {
       swal({
@@ -98,7 +136,7 @@ const ReviewCard: FC<ReviewCard> = ({
 
     return (
       <>
-        <FlexBox mt='20px'>
+        <FlexBox mt='10px'>
           <Avatar alt='Remy Sharp' src={`${image}`} />
           {!showUpdate && (
             <Box pl='10px'>
@@ -113,7 +151,21 @@ const ReviewCard: FC<ReviewCard> = ({
                 </Typography>
                 {reactions && JSON.parse(reactions).length > 0 && (
                   <FlexBox alignItems={"center"} pl='10px'>
-                    <InfoReactions data={JSON.parse(reactions)} />
+                    <FlexBox alignItems={"center"}>
+                      {JSON.parse(reactions).map((item: any, index: number) => {
+                        return (
+                          <img
+                            key={index}
+                            src={reactionImage[item.iconId]}
+                            style={{
+                              width: "15px",
+                              height: "15px",
+                              marginLeft: "2px",
+                            }}
+                          />
+                        );
+                      })}
+                    </FlexBox>
                     <Typography
                       component={"span"}
                       pl='6px'
@@ -144,63 +196,57 @@ const ReviewCard: FC<ReviewCard> = ({
                   {showAll ? "Thu gọn" : "Xem tất cả"}
                 </Button>
               )}
-              {user && (
-                <FlexBox alignItems={"center"} width='100%'>
-                  <Reaction reactions={reactions} uuid={uuid} />
-                  <Button
-                    sx={{ pl: "10px", textTransform: "inherit" }}
-                    onClick={() => {
-                      setShowRep(true);
-                    }}
-                  >
-                    Phản hồi
-                  </Button>
-                  {userId && user && userId === user.uid && (
-                    <Box sx={{ pl: "10px" }}>
-                      <HeadlessTippy
-                        interactive
-                        visible={showMenu}
-                        onClickOutside={() => setShowMenu(false)}
-                        render={(attrs) => (
-                          <Box
-                            {...attrs}
-                            sx={{
-                              width: "150px",
-                              boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.25)",
-                              borderRadius: "10px",
-                              py: "10px",
-                            }}
-                            id={theme}
-                          >
-                            <Button
-                              onClick={() => setShowUpdate(!showUpdate)}
-                              size='small'
-                              fullWidth
-                            >
-                              Chỉnh sửa
-                            </Button>
-                            <Button
-                              onClick={handleDelete}
-                              size='small'
-                              fullWidth
-                            >
-                              Xóa
-                            </Button>
-                          </Box>
-                        )}
-                      >
-                        <div
-                          style={{ cursor: "pointer" }}
-                          onClick={() => setShowMenu(!showMenu)}
+              <FlexBox alignItems={"center"} width='100%'>
+                <Reaction reactions={reactions} uuid={uuid} />
+                <Button
+                  sx={{ pl: "10px", textTransform: "inherit" }}
+                  onClick={() => {
+                    setShowRep(true);
+                  }}
+                >
+                  Phản hồi
+                </Button>
+                {userId && user && userId === user.uid && (
+                  <Box sx={{ pl: "10px" }}>
+                    <HeadlessTippy
+                      interactive
+                      visible={showMenu}
+                      onClickOutside={() => setShowMenu(false)}
+                      render={(attrs) => (
+                        <Box
+                          {...attrs}
+                          sx={{
+                            width: "150px",
+                            boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.25)",
+                            borderRadius: "10px",
+                            py: "10px",
+                          }}
+                          id={theme}
                         >
-                          {" "}
-                          <MoreHorizIcon color='primary' />
-                        </div>
-                      </HeadlessTippy>
-                    </Box>
-                  )}
-                </FlexBox>
-              )}
+                          <Button
+                            onClick={() => setShowUpdate(!showUpdate)}
+                            size='small'
+                            fullWidth
+                          >
+                            Chỉnh sửa
+                          </Button>
+                          <Button onClick={handleDelete} size='small' fullWidth>
+                            Xóa
+                          </Button>
+                        </Box>
+                      )}
+                    >
+                      <div
+                        style={{ cursor: "pointer" }}
+                        onClick={() => setShowMenu(!showMenu)}
+                      >
+                        {" "}
+                        <MoreHorizIcon color='primary' />
+                      </div>
+                    </HeadlessTippy>
+                  </Box>
+                )}
+              </FlexBox>
               {showRep && (
                 <FlexBox alignItems={"center"} width='100%'>
                   <Avatar alt='Remy Sharp' src={`${user.photoURL}`} />
