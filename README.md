@@ -20,8 +20,8 @@ Live demo: [https://dmovie-app.vercel.app/](https://dmovie-app.vercel.app/)
 
 ### Preview
 
-![Preview 1](https://drive.google.com/file/d/1Xy3AXJxJBTQYbPlTqpznLdgZCaWdH86U/view?usp=sharing)
-![Preview 2](https://drive.google.com/file/d/1BnkonssOg5XIcFuZTzV1Rxdw414kMkUj/view?usp=sharing)
+![Preview 1](https://i.imgur.com/edcrgUM.jpg)
+![Preview 2](https://i.imgur.com/PqRnQ5w.jpg)
 
 ### Technology
 
