@@ -2,7 +2,7 @@ import { Box, Grid } from "@mui/material";
 import { FC } from "react";
 import MovieProps from "../../models/MovieProps";
 import FlexTitle from "../FlexTitle";
-import OtherCard from "./OtherCard";
+import OtherCard from "../Card/OtherCard";
 const TV: FC<MovieProps> = ({ data, url, title }) => {
   return (
     <Box mt='20px'>

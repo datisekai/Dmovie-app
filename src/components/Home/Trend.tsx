@@ -2,7 +2,7 @@ import { Box, Grid } from "@mui/material";
 import { FC } from "react";
 import PropsData from "../../models/PropsData";
 import FlexTitle from "../FlexTitle";
-import HomeCard from "../HomeCard";
+import HomeCard from "../Card/HomeCard";
 
 const Trend: FC<PropsData> = ({ data }) => {
   return (
@@ -11,7 +11,7 @@ const Trend: FC<PropsData> = ({ data }) => {
       <Box mt='10px'>
         <Grid container spacing={"10px"}>
           {data?.map((item: any, index: number) => (
-            <Grid key={item.id} item xs={12} md={6} lg={4}>
+            <Grid key={item.id} item xs={12} md={6} sm={6} lg={4}>
               <HomeCard
                 id={item.id}
                 title={

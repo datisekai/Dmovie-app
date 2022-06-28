@@ -14,6 +14,7 @@ import Login from "./Login";
 import SearchName from "./SearchName";
 import Sidenav from "./Sidenav";
 import User from "./User";
+import SearchIcon from "@mui/icons-material/Search";
 const Header = () => {
   const [showBar, setShowBar] = useState(false);
   const width = useScrollProgress();
@@ -82,9 +83,6 @@ const Header = () => {
             <SearchName />
           </Box>
           <FlexBox alignItems={"center"}>
-            {/* <Button startIcon={<BackupIcon />} variant='text'>
-              Tải lên
-            </Button> */}
             <DarkModeIcon
               onChange={handleChangTheme}
               sx={{ my: 1 }}

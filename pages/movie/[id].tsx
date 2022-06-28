@@ -7,7 +7,7 @@ import DetailVideo from "../../src/components/Detail/DetailVideo";
 import Reviews from "../../src/components/Detail/Reviews";
 import Similars from "../../src/components/Detail/Similars";
 import Trallers from "../../src/components/Detail/Trallers";
-import VideoCard from "../../src/components/Detail/VideoCard";
+import VideoCard from "../../src/components/Card/VideoCard";
 import { IsBrowser } from "../../src/components/IsBrowser";
 import MainLayout from "../../src/components/layout/MainLayout";
 import WidthLayout from "../../src/components/layout/WidthLayout";
@@ -15,6 +15,7 @@ import Meta from "../../src/components/Meta";
 import Title from "../../src/components/Title";
 import { getMovie2Embed, IMAGE_500 } from "../../src/config";
 import MovieDetailProps from "../../src/models/MovieDetailProps";
+import Breadcrumb from "../../src/components/Breadcrumbs";
 
 const Video: FC<MovieDetailProps> = ({ video, detail, similars, reviews }) => {
   const router = useRouter();

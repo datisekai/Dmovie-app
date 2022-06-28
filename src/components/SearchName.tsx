@@ -7,7 +7,7 @@ import movie from "../actions/movie";
 import search from "../actions/search";
 import useDebounce from "../hooks/useDebounce";
 import { RootState } from "../redux/store";
-import SearchNameCard from "./SearchNameCard";
+import SearchNameCard from "./Card/SearchNameCard";
 const SearchName = () => {
   const [focus, setFocus] = useState(false);
   const inputRef = useRef<any>(null);
@@ -42,19 +42,8 @@ const SearchName = () => {
     }
   };
 
-  const SearchField = styled(TextField)(() => ({
-    "& label": {
-      color: `${theme === "dark" ? "#ccc" : "rgba(0, 0, 0, 0.6)"}`,
-    },
-    "& .css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input": {
-      backgroundColor: `${
-        theme === "dark" ? "#2a2a2a !important" : "#fff !important"
-      }`,
-    },
-  }));
-
   return (
-    <Box>
+    <Box width={"100%"}>
       <HeadlessTippy
         interactive
         visible={focus}
@@ -62,7 +51,10 @@ const SearchName = () => {
         render={(attrs) => (
           <Box
             {...attrs}
-            width={"500px"}
+            width={{
+              md: "500px",
+              xs: "95%",
+            }}
             border='1px solid #ccc'
             p='20px'
             sx={{
@@ -81,7 +73,13 @@ const SearchName = () => {
             {results.length > 0 && (
               <Grid sx={{ mt: "10px" }} container spacing='10px'>
                 {results.map((item: any) => (
-                  <Grid key={item.id} item md={6} sx={{ cursor: "pointer" }}>
+                  <Grid
+                    key={item.id}
+                    item
+                    md={6}
+                    xs={12}
+                    sx={{ cursor: "pointer" }}
+                  >
                     <Link
                       href={`/${
                         item.media_type == "movie" ? item.media_type : "tv-show"
@@ -113,24 +111,6 @@ const SearchName = () => {
           </Box>
         )}
       >
-        {/* <SearchField
-          size='small'
-          id='outlined-basic'
-          label='Tìm kiếm'
-          value={searchValue}
-          onChange={handleChange}
-          fullWidth
-          onFocus={() => setFocus(true)}
-          ref={inputRef}
-          sx={{
-            display: {
-              md: "inline-block",
-              xs: "none",
-            },
-            width: "500px",
-          }}
-          variant='outlined'
-        /> */}
         <input
           type='text'
           value={searchValue}

@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import FlexBox from "../FlexBox";
-import OtherCard from "../Home/OtherCard";
+import OtherCard from "../Card/OtherCard";
 
 interface ResultsProps {
   title: string;

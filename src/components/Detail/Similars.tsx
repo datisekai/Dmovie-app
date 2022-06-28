@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React, { FC } from "react";
-import SimilarCard from "./SimilarCard";
+import SimilarCard from "../Card/SimilarCard";
 
 interface SimilarsProps {
   data: any[];

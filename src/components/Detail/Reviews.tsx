@@ -7,7 +7,7 @@ import { database } from "../../config/firebase";
 import { RootState } from "../../redux/store";
 import { calculateCreatedTime2 } from "../../utils/formatTime";
 import FlexBox from "../FlexBox";
-import ReviewCard from "./ReviewCard";
+import ReviewCard from "../Card/ReviewCard";
 
 import MainAddComment from "./MainAddComment";
 

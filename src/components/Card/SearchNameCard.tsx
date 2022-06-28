@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import React, { FC } from "react";
-import { IMAGE_300 } from "../config";
-import SearchNameCard from "../models/SearchNameCard";
-import limitName from "../utils/limitName";
-import FlexBox from "./FlexBox";
+import { IMAGE_300 } from "../../config";
+import SearchNameCard from "../../models/SearchNameCard";
+import limitName from "../../utils/limitName";
+import FlexBox from "../FlexBox";
 
 const SearchNameCard: FC<SearchNameCard> = ({
   date,

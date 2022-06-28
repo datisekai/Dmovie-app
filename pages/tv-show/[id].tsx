@@ -8,7 +8,7 @@ import DetailVideo from "../../src/components/Detail/DetailVideo";
 import Reviews from "../../src/components/Detail/Reviews";
 import Seasons from "../../src/components/Detail/Seasons";
 import Similars from "../../src/components/Detail/Similars";
-import VideoCard from "../../src/components/Detail/VideoCard";
+import VideoCard from "../../src/components/Card/VideoCard";
 import { IsBrowser } from "../../src/components/IsBrowser";
 import MainLayout from "../../src/components/layout/MainLayout";
 import WidthLayout from "../../src/components/layout/WidthLayout";

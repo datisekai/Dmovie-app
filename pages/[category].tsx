@@ -9,7 +9,7 @@ import tv from "../src/actions/tv";
 import Breadcrumb from "../src/components/Breadcrumbs";
 import categoryData from "../src/components/data/category";
 import FlexBox from "../src/components/FlexBox";
-import HomeCard from "../src/components/HomeCard";
+import HomeCard from "../src/components/Card/HomeCard";
 import HomeLayout from "../src/components/layout/HomeLayout";
 import Title from "../src/components/Title";
 import useChangeWidth from "../src/hooks/useChangeWidth";

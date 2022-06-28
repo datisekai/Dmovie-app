@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React, { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import PropsData from "../../models/PropsData";
-import TrallerCard from "./TrallerCard";
+import TrallerCard from "../Card/TrallerCard";
 import SwiperCore, {
   Navigation,
   Autoplay,

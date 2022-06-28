@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { IMAGE_300 } from "../../config";
 import useSlidesView from "../../hooks/useSlidesView";
 import PropsData from "../../models/PropsData";
-import TrallerCard from "./TrallerCard";
+import TrallerCard from "../Card/TrallerCard";
 
 interface SeasonsProps {
   data: any[];
