@@ -37,26 +37,6 @@ const DetailVideo: FC<DetailVideoProps> = ({ data, media_type }) => {
       <Typography mt='10px'>
         Release date: {data.release_date || data.first_air_date}
       </Typography>
-      {/* <FlexBox mt='10px' alignItems={"center"}>
-        <Typography>Languages</Typography>
-        <FlexBox alignItems={"center"} flexWrap='wrap'>
-          {data.spoken_languages.map((item: any) => (
-            <Typography
-              sx={{
-                px: "10px",
-                bgcolor: primary.main,
-                color: "white",
-                ml: "10px",
-                mt: "10px",
-                borderRadius: "10px",
-              }}
-              key={item.iso_639_1}
-            >
-              {item.english_name}
-            </Typography>
-          ))}
-        </FlexBox>
-      </FlexBox> */}
 
       <FlexBox mt='10px' alignItems={"center"}>
         <Typography>Genres</Typography>
@@ -86,9 +66,11 @@ const DetailVideo: FC<DetailVideoProps> = ({ data, media_type }) => {
       <Typography component={"p"} mt='10px'>
         {showAll ? data.overview : data.overview.slice(0, 220) + "..."}
       </Typography>
-      <Button onClick={() => setShowAll(!showAll)}>
-        {showAll ? "Thu gọn" : "Xem tất cả"}
-      </Button>
+      {data.overview.length > 200 && (
+        <Button onClick={() => setShowAll(!showAll)}>
+          {showAll ? "Thu gọn" : "Xem tất cả"}
+        </Button>
+      )}
     </Box>
   );
 };
