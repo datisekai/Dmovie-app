@@ -1,29 +1,18 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  TextareaAutosize,
-  Typography,
-} from "@mui/material";
-import { onValue, ref, set } from "firebase/database";
+import { Box, Typography } from "@mui/material";
+import { onValue, ref } from "firebase/database";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { database } from "../../config/firebase";
 import { RootState } from "../../redux/store";
-import {
-  calculateCreatedTime,
-  calculateCreatedTime2,
-} from "../../utils/formatTime";
+import { calculateCreatedTime2 } from "../../utils/formatTime";
 import FlexBox from "../FlexBox";
 import ReviewCard from "./ReviewCard";
 
-import TextComment from "./TextComment";
 import MainAddComment from "./MainAddComment";
 
 const Reviews = ({ data, media_type }: any) => {
   const user: any = useSelector((state: RootState) => state.auth.user);
-  const theme = useSelector((state: RootState) => state.theme.theme);
 
   const router = useRouter();
   const [comments, setComments] = useState<any>({
@@ -72,7 +61,7 @@ const Reviews = ({ data, media_type }: any) => {
           Bình luận
         </Typography>
         <Typography pl='10px' fontWeight={500} fontSize='18px'>
-          {data.length + comments.length}
+          {comments.parents.length}
         </Typography>
       </FlexBox>
       {user && <MainAddComment media_type={media_type} />}
@@ -95,20 +84,6 @@ const Reviews = ({ data, media_type }: any) => {
           />
         ))}
       </Box>
-      {/* <Box>
-        {data?.map((item: any, index: number) => (
-          <ReviewCard
-            key={index}
-            content={item.content}
-            createdAt={calculateCreatedTime(item.created_at)}
-            image={
-              item.author_details.avatar_path &&
-              item.author_details.avatar_path.slice(1)
-            }
-            name={item.author}
-          />
-        ))}
-      </Box> */}
     </Box>
   );
 };
