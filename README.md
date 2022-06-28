@@ -1,34 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dnivue
 
-## Getting Started
+A movie watching website
 
-First, run the development server:
+Live demo: [https://dmovie-app.vercel.app/](https://dmovie-app.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Comment, rep comment realtime nhiều cấp.
+- Thả reaction realtime
+- Login google
+- Xem movie, xem tv show theo season, episode.
+- Lọc theo tên, thể loại.
+- Dark mode.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Clone project
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Register an account on [TMDB](https://www.themoviedb.org/?language=vi)
+- In file .env.example fill the environment variable match then rename to .env
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Preview
 
-## Learn More
+![Preview 1](https://res.cloudinary.com/annnn/image/upload/v1642508485/Screenshot_2022-01-18_191806_elqyem.png)
+![Preview 2](https://res.cloudinary.com/annnn/image/upload/v1642508509/Screenshot_2022-01-18_191834_hyysjs.png)
+![Preview 3](https://res.cloudinary.com/annnn/image/upload/v1642508518/Screenshot_2022-01-18_191932_hbvc4d.png)
 
-To learn more about Next.js, take a look at the following resources:
+### Technology
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- FE: ReactJs, Zustand, Swiper, Javasrcipt
+- BE: Firebase (Authentication, Firestore database)
