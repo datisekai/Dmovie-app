@@ -20,11 +20,12 @@ Live demo: [https://dmovie-app.vercel.app/](https://dmovie-app.vercel.app/)
 
 ### Preview
 
-![Preview 1](https://res.cloudinary.com/annnn/image/upload/v1642508485/Screenshot_2022-01-18_191806_elqyem.png)
-![Preview 2](https://res.cloudinary.com/annnn/image/upload/v1642508509/Screenshot_2022-01-18_191834_hyysjs.png)
-![Preview 3](https://res.cloudinary.com/annnn/image/upload/v1642508518/Screenshot_2022-01-18_191932_hbvc4d.png)
+![Preview 1](https://drive.google.com/file/d/1Xy3AXJxJBTQYbPlTqpznLdgZCaWdH86U/view?usp=sharing)
+![Preview 2](https://drive.google.com/file/d/1BnkonssOg5XIcFuZTzV1Rxdw414kMkUj/view?usp=sharing)
 
 ### Technology
 
-- FE: ReactJs, Zustand, Swiper, Javasrcipt
-- BE: Firebase (Authentication, Firestore database)
+- Nextjs
+- Typescript
+- Material UI
+- Firebase
