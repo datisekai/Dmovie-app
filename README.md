@@ -1,4 +1,4 @@
-# Dnivue
+# DMovie
 
 A movie watching website
 
