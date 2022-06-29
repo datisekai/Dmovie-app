@@ -52,7 +52,7 @@ const Reviews = ({ data, media_type }: any) => {
     return () => {
       unSub();
     };
-  }, []);
+  }, [data]);
 
   return (
     <Box mt='10px'>
