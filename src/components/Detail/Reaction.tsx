@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import HeadlessTippy from "@tippyjs/react/headless";
 import { Box, Button } from "@mui/material";
 import { reactionGif } from "../data/reaction";
@@ -15,6 +15,7 @@ interface Reaction {
 const Reaction: FC<Reaction> = ({ reactions, uuid }) => {
   const theme = useSelector((state: RootState) => state.theme.theme);
   const user: any = useSelector((state: RootState) => state.auth.user);
+
   const handleAddReaction = (iconId: string) => {
     let newReactions = [];
     if (reactions) {
@@ -46,6 +47,7 @@ const Reaction: FC<Reaction> = ({ reactions, uuid }) => {
       reactions: JSON.stringify(newReactions),
     });
   };
+
   return (
     <HeadlessTippy
       interactive
@@ -73,7 +75,23 @@ const Reaction: FC<Reaction> = ({ reactions, uuid }) => {
         </Box>
       )}
     >
-      <Button sx={{ textTransform: "inherit" }}>Thích</Button>
+      <Button
+        sx={{ textTransform: "capitalize" }}
+        color={
+          reactions &&
+          JSON.parse(reactions).find((item: any) => item.userId == user.uid) &&
+          JSON.parse(reactions).find((item: any) => item.userId == user.uid)
+            .iconId
+            ? "warning"
+            : "primary"
+        }
+      >
+        {(reactions &&
+          JSON.parse(reactions).find((item: any) => item.userId == user.uid) &&
+          JSON.parse(reactions).find((item: any) => item.userId == user.uid)
+            .iconId) ||
+          "Thích"}
+      </Button>
     </HeadlessTippy>
   );
 };

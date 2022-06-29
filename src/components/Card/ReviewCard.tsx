@@ -51,6 +51,16 @@ const ReviewCard: FC<ReviewCard> = ({
     const [repComment, setRepComment] = useState(name + " ");
     const router = useRouter();
 
+    const iconImage: any[] = [];
+
+    if (reactions) {
+      JSON.parse(reactions).forEach((item: any) => {
+        if (!iconImage.includes(item.iconId)) {
+          iconImage.push(item.iconId);
+        }
+      });
+    }
+
     const handleDelete = () => {
       swal({
         title: "Are you sure?",
@@ -114,7 +124,7 @@ const ReviewCard: FC<ReviewCard> = ({
                 {reactions && JSON.parse(reactions).length > 0 && (
                   <FlexBox alignItems={"center"} pl='10px'>
                     <FlexBox alignItems={"center"}>
-                      {JSON.parse(reactions).map((item: any, index: number) => {
+                      {/* {JSON.parse(reactions).map((item: any, index: number) => {
                         return (
                           <img
                             key={index}
@@ -126,7 +136,18 @@ const ReviewCard: FC<ReviewCard> = ({
                             }}
                           />
                         );
-                      })}
+                      })} */}
+                      {iconImage.map((item: any) => (
+                        <img
+                          key={item}
+                          src={reactionImage[item]}
+                          style={{
+                            width: "15px",
+                            height: "15px",
+                            marginLeft: "2px",
+                          }}
+                        />
+                      ))}
                     </FlexBox>
                     <Typography
                       component={"span"}
