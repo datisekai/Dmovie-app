@@ -10,4 +10,4 @@ export const getImageYoutube = (key: string) =>
 
 export const getMovie2Embed = (id: string) => `https://2embed.org/embed/${id}`;
 export const getTvShow2Embed = (id: string, season: string, episode: string) =>
-  `https://www.2embed.org/embed/${id}/${season}/${episode}`;
+  `https://2embed.org/embed/${id}/${season}/${episode}`;
