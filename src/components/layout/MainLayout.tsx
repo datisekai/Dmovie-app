@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import Snowfall from "react-snowfall";
 import Props from "../../models/Props";
 import { RootState } from "../../redux/store";
 import Header from "../Header";
