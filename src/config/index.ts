@@ -8,6 +8,7 @@ export const IMAGE_300 = "https://image.tmdb.org/t/p/w300";
 export const getImageYoutube = (key: string) =>
   `https://i3.ytimg.com/vi/${key}/maxresdefault.jpg`;
 
-export const getMovie2Embed = (id: string) => `https://2embed.org/embed/${id}`;
+export const getMovie2Embed = (id: string) =>
+  `https://www.2embed.to/embed/tmdb/movie?id=${id}`;
 export const getTvShow2Embed = (id: string, season: string, episode: string) =>
-  `https://2embed.org/embed/${id}/${season}/${episode}`;
+  `https://www.2embed.to/embed/tmdb/tv?id=${id}&s=${season}&e=${episode}`;
