@@ -7,6 +7,7 @@ import Trend from "../src/components/Home/Trend";
 import TV from "../src/components/Home/TV";
 import HomeLayout from "../src/components/layout/HomeLayout";
 import Meta from "../src/components/Meta";
+import SlideReview from "../src/components/SlideReview";
 import Title from "../src/components/Title";
 const Home: NextPage = ({ data }: any) => {
   const movieRender = [
@@ -54,6 +55,7 @@ const Home: NextPage = ({ data }: any) => {
       />
       <Title />
       <HomeLayout>
+        <SlideReview media_type='movie' data={data.upComing} />
         <Trend data={data.trend} />
 
         {movieRender?.map((item) => (

@@ -3,6 +3,7 @@ import React from "react";
 import tv from "../../src/actions/tv";
 import TV from "../../src/components/Home/TV";
 import HomeLayout from "../../src/components/layout/HomeLayout";
+import SlideReview from "../../src/components/SlideReview";
 import Title from "../../src/components/Title";
 
 const TvShow: NextPage = ({ data }: any) => {
@@ -36,6 +37,7 @@ const TvShow: NextPage = ({ data }: any) => {
   return (
     <HomeLayout>
       <Title />
+      <SlideReview media_type={"tv-show"} data={TVRender[0].results} />
       {TVRender?.map((item) => (
         <TV
           data={item.results}

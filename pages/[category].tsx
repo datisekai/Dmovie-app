@@ -14,6 +14,7 @@ import HomeLayout from "../src/components/layout/HomeLayout";
 import Title from "../src/components/Title";
 import useChangeWidth from "../src/hooks/useChangeWidth";
 import { RootState } from "../src/redux/store";
+import SlideReview from "../src/components/SlideReview";
 
 interface CategoryProps {
   data: any;
