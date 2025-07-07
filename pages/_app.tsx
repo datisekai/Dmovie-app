@@ -46,6 +46,23 @@ function MyApp({ Component, pageProps }: AppProps) {
           type="application/javascript"
           src="https://a.magsrv.com/ad-provider.js"
         ></script>
+        {/* New ad script config */}
+        <script
+          type="application/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+              pn_idzone = 5668552;
+              pn_sleep_seconds = 0;
+              pn_is_self_hosted = 1;
+              pn_soft_ask = 0;
+              pn_filename = "/worker.js";
+            `,
+          }}
+        />
+        <script
+          type="application/javascript"
+          src="https://js.wpnsrv.com/pn.php"
+        ></script>
       </Head>
       <NextNProgress
         showOnShallow={true}
