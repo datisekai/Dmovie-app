@@ -28,6 +28,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     const initAdProvider = () => {
       if (typeof window !== "undefined" && window.AdProvider) {
         (window.AdProvider = window.AdProvider || []).push({ serve: {} });
+        // Push again for the new ad block
+        (window.AdProvider = window.AdProvider || []).push({ serve: {} });
       } else {
         // Retry after a short delay if AdProvider is not yet available
         setTimeout(initAdProvider, 100);
@@ -76,6 +78,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
           <div style={{ margin: "20px 0", textAlign: "center" }}>
             <ins className="eas6a97888e6" data-zoneid="5668188"></ins>
+          </div>
+          {/* New ad block */}
+          <div style={{ margin: "20px 0", textAlign: "center" }}>
+            <ins className="eas6a97888e37" data-zoneid="5668586"></ins>
           </div>
         </ThemeLayout>
       </Provider>
