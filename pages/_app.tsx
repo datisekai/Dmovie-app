@@ -60,6 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           }}
         />
         <script
+          async
           type="application/javascript"
           src="https://js.wpnsrv.com/pn.php"
         ></script>
